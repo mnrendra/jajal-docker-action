@@ -32,7 +32,9 @@ const plugins = [
 
 const config = {
   branches,
-  plugins
+  plugins,
+  dryRun: false,
+  ci: true
 }
 
 module.exports = config

@@ -58,7 +58,9 @@ const main = async () => {
       GIT_AUTHOR_EMAIL: 'gitops-release@users.noreply.github.com',
       GIT_COMMITTER_NAME: 'GitOps Release',
       GIT_COMMITTER_EMAIL: 'gitops-release@users.noreply.github.com',
-      GITHUB_TOKEN: env.GITHUB_TOKEN
+      CI: env.CI ?? true,
+      GITHUB_ACTIONS: env.GITHUB_ACTIONS ?? true,
+      GITHUB_TOKEN: env.GITHUB_TOKEN,
     }
   })
 

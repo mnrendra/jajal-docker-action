@@ -6,22 +6,15 @@ FROM node@sha256:ed0e340edf19b7014fd6b0a5f7048b73826b6ae6104132184243f9422b1e995
 ENV DEBIAN_FRONTEND=noninteractive
 
 #
-RUN apt-get update
-RUN apt-get upgrade -y
-RUN apt-get install -y --no-install-recommends git gnupg ca-certificates
-RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-#
 COPY package.json /package.json
 COPY package-lock.json /package-lock.json
 COPY config.js /config.js
 COPY index.js /index.js
+COPY setup.sh /setup.sh
 
 #
-RUN npm ci
-
-#
-RUN chmod +x /index.js
+RUN chmod +x /setup.sh
+RUN /setup.sh
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
 ENTRYPOINT ["/index.js"]
