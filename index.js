@@ -52,9 +52,21 @@ const main = async () => {
 
   const release = normalizeModule(semanticRelease)
 
-  console.log(env)
+  const gitCommitterName = env.GIT_COMMITTER_NAME ?? 'GitOps Release'
+  const gitCommitterEmail = env.GIT_COMMITTER_EMAIL ?? 'gitops-release@users.noreply.github.com'
 
-  const result = await release(config)
+  const gitAuthorName = env.GIT_AUTHOR_NAME ?? gitCommitterName
+  const gitAuthorEmail = env.GIT_AUTHOR_EMAIL ?? gitCommitterEmail
+
+  const result = await release(config, {
+    env: {
+      ...env,
+      GIT_AUTHOR_NAME: gitAuthorName,
+      GIT_AUTHOR_EMAIL: gitAuthorEmail,
+      GIT_COMMITTER_NAME: gitCommitterName,
+      GIT_COMMITTER_EMAIL: gitCommitterEmail,
+    }
+  })
 
   return result
 }
