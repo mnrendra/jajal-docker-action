@@ -16,8 +16,8 @@ const main = async (): Promise<string> => {
   const gitconfig = await execCmd('git config --list')
   console.log('gitconfig:\n', gitconfig.stdout, '\n', gitconfig.stderr)
 
-  const gpgk = await execCmd('gpg -k')
-  console.log('gpgk:\n', gpgk.stdout, '\n', gpgk.stderr)
+  const gpgk = await execCmd('gpg --list-secret-keys --keyid-format=long')
+  console.log('gpglist:\n', gpgk.stdout, '\n', gpgk.stderr)
 
   await execCmd(`git tag -s ${tag} -m "${message}\n\n${notes}"`)
 
