@@ -1,6 +1,13 @@
 # action.yml
 name: 'Jajal Docker Action'
 description: 'Jajal docker action'
+
+author: Muhammad Rendra
+
+branding:
+  icon: at-sign
+  color: purple
+
 inputs:
   who-to-greet:  # id of input
     description: 'Who to greet'
