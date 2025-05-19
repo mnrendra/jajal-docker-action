@@ -144,7 +144,7 @@ out
 .pnp.*
 
 # Rollup
-bin/
+# bin/
 build/
 dist/
 lib/

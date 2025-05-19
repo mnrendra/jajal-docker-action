@@ -1,6 +1,6 @@
 {
   "name": "@mnrendra/jajal-docker-action",
-  "version": "1.19.0",
+  "version": "3.0.0",
   "description": "Jajal docker action.",
   "private": false,
   "bin": "bin/index.js",
