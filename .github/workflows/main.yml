@@ -29,7 +29,7 @@ jobs:
       # Hello world action step
       - name: Hello world action step
         id: hello
-        uses: mnrendra/jajal-docker-action@58ae5b011ff9cd2af957dc4648b6768e976b993c
+        uses: mnrendra/jajal-docker-action@7269bacdf63f2b2300ea62bd46c51e0e9e2c073d
 
       # Use the output from the `hello` step
       - name: Get the output time
