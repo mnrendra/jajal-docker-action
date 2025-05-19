@@ -24,16 +24,18 @@ parse() {
   local file="$1"
   local line trimmed
   local result=()
-  while IFS= read -r line || [[ -n "$line" ]]; do
-    trimmed="$(trim "$line")"
-    trimmed="${trimmed%%#*}"
-    trimmed="$(trim "$trimmed")"
-    [[ -z "$trimmed" || "$trimmed" == \#* ]] && continue
-    isvalid "$trimmed" || continue
-    if ! printf "%s\n" "${result[@]}" | grep -qxF -- "$trimmed"; then
-      result+=("$trimmed")
-    fi
-  done < "$file"
+  if [ -f "$file" ]; then
+    while IFS= read -r line || [[ -n "$line" ]]; do
+      trimmed="$(trim "$line")"
+      trimmed="${trimmed%%#*}"
+      trimmed="$(trim "$trimmed")"
+      [[ -z "$trimmed" || "$trimmed" == \#* ]] && continue
+      isvalid "$trimmed" || continue
+      if ! printf "%s\n" "${result[@]}" | grep -qxF -- "$trimmed"; then
+        result+=("$trimmed")
+      fi
+    done < "$file"
+  fi
   printf '%s\n' "${result[@]}"
 }
 backup() {
