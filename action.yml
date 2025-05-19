@@ -25,6 +25,12 @@ inputs:
     description: Git committer email
     required: false
     default: gitops-release@users.noreply.github.com
+  gpg-private-key:
+    description: GPG private key
+    required: false
+  gpg-passphrase:
+    description: GPG passphrase
+    required: false
   token:
     description: GitHub token
     required: false

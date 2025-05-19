@@ -1,8 +1,10 @@
 #!/usr/bin/env node
-"use strict";var c=require("node:process"),g=require("node:child_process");const s=(t,n={})=>new Promise((a,r)=>{try{g.exec(t,n,(o,e,i)=>{o!=null&&r(o),a({stdout:e,stderr:i})})}catch(o){r(o)}}),l=async()=>{const[t,n,a]=c.argv.slice(2),r=`v${t}`;await s(`git tag -d ${r}`),await s(`git push origin -d tag ${r}`);const o=`release: ${r}`,e=await s("git config --list");console.log(`gitconfig:
+"use strict";var a=require("node:process"),l=require("node:child_process");const r=(t,n={})=>new Promise((c,o)=>{try{l.exec(t,n,(s,e,i)=>{s!=null&&o(s),c({stdout:e,stderr:i})})}catch(s){o(s)}}),d=async()=>{const[t,n,c]=a.argv.slice(2),o=`v${t}`;await r(`git tag -d ${o}`),await r(`git push origin -d tag ${o}`);const s=`release: ${o}`,e=await r("git config --list");console.log(`gitconfig:
 `,e.stdout,`
-`,e.stderr);const i=await s("gpg --list-secret-keys --keyid-format=long");return console.log(`gpglist:
+`,e.stderr);const i=await r("gpg --list-secret-keys --keyid-format=long");console.log(`gpgk:
 `,i.stdout,`
-`,i.stderr),await s(`git tag -s ${r} -m "${o}
+`,i.stderr);const g=await r("gpgconf --list-dirs");return console.log(`gpgconf:
+`,g.stdout,`
+`,g.stderr),await r(`git tag -s ${o} -m "${s}
 
-${n}"`),await s(`git push origin ${r}`),a};l().then(t=>{console.log("result:",t)}).catch(t=>{throw t instanceof Error?t:new Error("Unknown error")});
+${n}"`),await r(`git push origin ${o}`),c};d().then(t=>{console.log("result:",t)}).catch(t=>{throw t instanceof Error?t:new Error("Unknown error")});
