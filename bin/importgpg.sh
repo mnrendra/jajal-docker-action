@@ -32,3 +32,6 @@ add_unique_line "pinentry-mode loopback" ~/.gnupg/gpg.conf
 add_unique_line "allow-loopback-pinentry" ~/.gnupg/gpg-agent.conf
 
 chmod 600 ~/.gnupg/*
+
+gpgconf --kill gpg-agent
+gpgconf --launch gpg-agent
