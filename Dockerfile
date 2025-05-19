@@ -8,11 +8,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 #
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN apt-get install -y --no-install-recommends git gnupg
+RUN apt-get install -y --no-install-recommends git gnupg ca-certificates
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-#
-RUN git config --global --add safe.directory /github/workspace
 
 #
 COPY package.json /package.json
