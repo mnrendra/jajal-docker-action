@@ -13,6 +13,10 @@ const main = async (): Promise<string> => {
 
   const message = `release: ${tag}`
 
+  await execCmd('git config --list')
+
+  await execCmd('gpg -k')
+
   await execCmd(`git tag -s ${tag} -m "${message}\n\n${notes}"`)
 
   await execCmd(`git push origin ${tag}`)
