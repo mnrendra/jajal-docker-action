@@ -28,8 +28,6 @@ jobs:
       - name: Hello world action step
         id: hello
         uses: mnrendra/jajal-docker-action@74bafe3b54042591dfc277457e54b9b2aca42b42
-        with:
-          who-to-greet: 'Mona the Octocat'
 
       # Use the output from the `hello` step
       - name: Get the output time

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const { exec } = require('node:child_process')
-const { chdir } = require('node:process')
+const { chdir, env } = require('node:process')
 
 const semanticRelease = require('semantic-release')
 
@@ -42,18 +42,23 @@ const execCmd = (
 })
 
 const main = async () => {
-  const release = normalizeModule(semanticRelease)
-
   chdir('/github/workspace')
 
   await execCmd('git config --global --add safe.directory /github/workspace')
+
+  if (!env.GITHUB_TOKEN) {
+    throw new Error('github-token is not provided')
+  }
+
+  const release = normalizeModule(semanticRelease)
 
   const result = await release(config, {
     env: {
       GIT_AUTHOR_NAME: 'GitOps Release',
       GIT_AUTHOR_EMAIL: 'gitops-release@users.noreply.github.com',
       GIT_COMMITTER_NAME: 'GitOps Release',
-      GIT_COMMITTER_EMAIL: 'gitops-release@users.noreply.github.com'
+      GIT_COMMITTER_EMAIL: 'gitops-release@users.noreply.github.com',
+      GITHUB_TOKEN: env.GITHUB_TOKEN
     }
   })
 
@@ -65,5 +70,9 @@ main()
     console.log('result:', result)
   })
   .catch((error) => {
-    console.error(error)
+    if (error instanceof Error) {
+      throw error
+    } else {
+      throw new Error('Unknown error')
+    }
   })
