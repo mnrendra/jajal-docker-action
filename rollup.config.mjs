@@ -9,5 +9,14 @@ export default [
       format: 'cjs'
     },
     plugins: esbuild({ minify: true })
+  },
+  {
+    external: (id) => !/^[./]/.test(id),
+    input: 'src/scripts/index.ts',
+    output: {
+      file: 'bin/script.js',
+      format: 'cjs'
+    },
+    plugins: esbuild({ minify: true })
   }
 ]

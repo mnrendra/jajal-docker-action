@@ -5,7 +5,7 @@
   "private": false,
   "bin": "bin/index.js",
   "scripts": {
-    "build": "rm -rf bin && npx rollup -c && chmod +x bin/index.js",
+    "build": "rm -rf bin && npx rollup -c && chmod +x bin/*",
     "commit": "npx cz",
     "security": "scorecard --local .",
     "test": "npm run build && npx jest --coverage"

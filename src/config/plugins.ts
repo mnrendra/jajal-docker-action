@@ -12,7 +12,8 @@ const plugins: ReadonlyArray<PluginSpec<any>> = [
   '@semantic-release/release-notes-generator',
   ['@semantic-release/npm', { npmPublish: false }],
   ['@semantic-release/exec', {
-    publishCmd: 'echo "$GIT_AUTHOR_NAME" && echo "$GIT_AUTHOR_EMAIL" && echo "$GIT_COMMITTER_NAME" && echo "$GIT_COMMITTER_EMAIL" && git config --list'
+    /* eslint-disable-next-line no-template-curly-in-string */
+    publishCmd: './bin/script.js ${nextRelease.version} ${nextRelease.notes} ${branch.name}'
   }]
 ]
 
