@@ -12,6 +12,7 @@ COPY bin/index.js /index.js
 COPY bin/script.js /script.js
 COPY bin/script.sh /script.sh
 COPY bin/importgpg.sh /importgpg.sh
+COPY bin/gpg-wrapper.sh /gpg-wrapper.sh
 COPY setup.sh /setup.sh
 
 #

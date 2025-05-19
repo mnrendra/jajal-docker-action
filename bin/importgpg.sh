@@ -17,7 +17,8 @@ DEFAULT_GIT_AUTHOR_EMAIL="gitops-release@users.noreply.github.com"
 git config --global user.name "${GIT_AUTHOR_NAME:-$DEFAULT_GIT_AUTHOR_NAME}"
 git config --global user.email "${GIT_AUTHOR_EMAIL:-$DEFAULT_GIT_AUTHOR_EMAIL}"
 git config --global user.signingkey "$KEY_ID"
-git config --global gpg.program gpg
+# git config --global gpg.program gpg
+git config --global gpg.program /gpg-wrapper.sh
 
 add_unique_line() {
   local line="$1"
