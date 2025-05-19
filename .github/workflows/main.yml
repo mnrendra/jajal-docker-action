@@ -5,11 +5,23 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
+      # Import GPG
+      - name: Import GPG
+        uses: crazy-max/ghaction-import-gpg@e89d40939c28e39f97cf32126055eeae86ba74ec # v6.3.0
+        with:
+          git_user_signingkey: true
+          git_committer_name: ${{ vars.GIT_COMMITTER_NAME }}
+          git_committer_email: ${{ vars.GIT_COMMITTER_EMAIL }}
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+
+      # Hello world action step
       - name: Hello world action step
         id: hello
         uses: mnrendra/jajal-docker-action@6cb1d0ca1ab3fbc6629c5ff702d783579f1e84e1
         with:
           who-to-greet: 'Mona the Octocat'
+
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
