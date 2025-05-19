@@ -8,8 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 #
 COPY package.json /package.json
 COPY package-lock.json /package-lock.json
-COPY config.js /config.js
-COPY index.js /index.js
+COPY bin/index.js /index.js
 COPY setup.sh /setup.sh
 
 #

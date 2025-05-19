@@ -1,7 +1,6 @@
-# action.yml
 name: Jajal Docker Action
-description: Jajal docker action
-version: '0.0.0-development'
+description: Jajal docker action.
+version: 1.19.0
 
 author: Muhammad Rendra
 
