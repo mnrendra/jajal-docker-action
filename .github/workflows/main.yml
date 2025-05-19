@@ -27,7 +27,7 @@ jobs:
       # Hello world action step
       - name: Hello world action step
         id: hello
-        uses: mnrendra/jajal-docker-action@0af4de33038c2cb9cecd506569a06665864ae206
+        uses: mnrendra/jajal-docker-action@e8614d49051fac6b0adabb194e1181b27a22181d
         with:
           who-to-greet: 'Mona the Octocat'
 
