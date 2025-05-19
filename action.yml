@@ -19,4 +19,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   env:
+    CI: true
+    GITHUB_ACTIONS: true
     GITHUB_TOKEN: ${{ inputs.github-token }}

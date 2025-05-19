@@ -30,8 +30,6 @@ jobs:
       - name: Hello world action step
         id: hello
         uses: mnrendra/jajal-docker-action@58ae5b011ff9cd2af957dc4648b6768e976b993c
-        with:
-          github-token: ${{ secrets.TOKEN }}
 
       # Use the output from the `hello` step
       - name: Get the output time
