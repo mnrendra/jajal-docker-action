@@ -10,6 +10,12 @@ jobs:
     permissions:
       contents: write
     steps:
+      # Harden Runner
+      - name: Harden Runner # Audit all outbound calls
+        uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
+        with:
+          egress-policy: audit
+
       # Checkout
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -25,15 +31,7 @@ jobs:
           git_committer_email: ${{ vars.GIT_COMMITTER_EMAIL }}
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-      
-      #
-      - name: Check Node Pre
-        run: ls -laihs && node --version || true
 
       # Hello world action step
       - name: Hello world action step
         uses: mnrendra/jajal-docker-action@f24f321cb8b1edf7378961441887ab3f3dacfbb9
-
-      #
-      - name: Check Node Post
-        run: ls -laihs && node --version || true

@@ -26,7 +26,7 @@ const plugins = [
     npmPublish: false
   }],
   ['@semantic-release/exec', {
-    publishCmd: 'echo "susu"'
+    publishCmd: 'echo \n"$GIT_AUTHOR_NAME" && echo \n"$GIT_AUTHOR_EMAIL" && echo \n"$GIT_COMMITTER_NAME" && echo \n"$GIT_COMMITTER_EMAIL" && git config --list'
   }]
 ]
 

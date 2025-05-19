@@ -1,24 +1,42 @@
 # action.yml
-name: 'Jajal Docker Action'
-description: 'Jajal docker action'
+name: Jajal Docker Action
+description: Jajal docker action
+version: '0.0.0-development'
 
 author: Muhammad Rendra
 
 branding:
   icon: at-sign
-  color: purple
+  color: green
 
 inputs:
-  token:  # id of input
-    description: 'GitHub token'
+  git-author-name:
+    description: Git author name
+    required: false
+    default: GitOps Release
+  git-author-email:
+    description: Git author email
+    required: false
+    default: gitops-release@users.noreply.github.com
+  git-committer-name:
+    description: Git committer name
+    required: false
+    default: GitOps Release
+  git-committer-email:
+    description: Git committer email
+    required: false
+    default: gitops-release@users.noreply.github.com
+  token:
+    description: GitHub token
+    required: false
     default: ${{ github.token }}
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: docker
+  image: Dockerfile
   env:
+    GIT_AUTHOR_NAME: ${{ inputs.git-author-name }}
+    GIT_AUTHOR_EMAIL: ${{ inputs.git-author-email }}
+    GIT_COMMITTER_NAME: ${{ inputs.git-committer-name }}
+    GIT_COMMITTER_EMAIL: ${{ inputs.git-committer-email }}
     GITHUB_TOKEN: ${{ inputs.token }}
-    # CI: true
-    # GITHUB_ACTIONS: true
