@@ -32,7 +32,7 @@ jobs:
 
       # Hello world action step
       - name: Hello world action step
-        uses: mnrendra/jajal-docker-action@7078115c874fb6abd5c063f042b0bc3295352ab4
+        uses: mnrendra/jajal-docker-action@f24f321cb8b1edf7378961441887ab3f3dacfbb9
 
       #
       - name: Check Node Post
