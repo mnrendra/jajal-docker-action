@@ -13,7 +13,7 @@ const plugins: ReadonlyArray<PluginSpec<any>> = [
   ['@semantic-release/npm', { npmPublish: false }],
   ['@semantic-release/exec', {
     /* eslint-disable-next-line no-template-curly-in-string */
-    publishCmd: './bin/script.js "${nextRelease.version}" "${nextRelease.notes}" "${branch.name}"'
+    publishCmd: './bin/script.sh "${nextRelease.version}" "${nextRelease.notes}" "${branch.name}"'
   }],
   '@semantic-release/github'
 ]
