@@ -50,21 +50,23 @@ const main = async () => {
     throw new Error('github-token is not provided')
   }
 
-  const release = normalizeModule(semanticRelease)
+  await execCmd('npx semantic-release -e ./config.js')
 
-  const result = await release(config, {
-    env: {
-      GIT_AUTHOR_NAME: 'GitOps Release',
-      GIT_AUTHOR_EMAIL: 'gitops-release@users.noreply.github.com',
-      GIT_COMMITTER_NAME: 'GitOps Release',
-      GIT_COMMITTER_EMAIL: 'gitops-release@users.noreply.github.com',
-      CI: env.CI ?? true,
-      GITHUB_ACTIONS: env.GITHUB_ACTIONS ?? true,
-      GITHUB_TOKEN: env.GITHUB_TOKEN,
-    }
-  })
+  // const release = normalizeModule(semanticRelease)
 
-  return result
+  // const result = await release(config, {
+  //   env: {
+  //     GIT_AUTHOR_NAME: 'GitOps Release',
+  //     GIT_AUTHOR_EMAIL: 'gitops-release@users.noreply.github.com',
+  //     GIT_COMMITTER_NAME: 'GitOps Release',
+  //     GIT_COMMITTER_EMAIL: 'gitops-release@users.noreply.github.com',
+  //     CI: env.CI ?? true,
+  //     GITHUB_ACTIONS: env.GITHUB_ACTIONS ?? true,
+  //     GITHUB_TOKEN: env.GITHUB_TOKEN,
+  //   }
+  // })
+
+  // return result
 }
 
 main()
