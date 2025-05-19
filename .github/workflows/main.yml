@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: mnrendra/jajal-docker-action@11a1cdd66aa80e4978223444f98985fe3e2df2d6
+        uses: mnrendra/jajal-docker-action@c9ed6b62c8d7897d2a7af78bafd57f8990ecceb1
         with:
           who-to-greet: 'Mona the Octocat'
       # Use the output from the `hello` step
