@@ -14,7 +14,8 @@ const plugins: ReadonlyArray<PluginSpec<any>> = [
   ['@semantic-release/exec', {
     /* eslint-disable-next-line no-template-curly-in-string */
     publishCmd: './bin/script.js "${nextRelease.version}" "${nextRelease.notes}" "${branch.name}"'
-  }]
+  }],
+  '@semantic-release/github'
 ]
 
 export default plugins

@@ -4,7 +4,7 @@ import main from './main'
 
 main()
   .then((result) => {
-    console.log('berhasil:', result)
+    console.log('result:', result)
   })
   .catch((error) => {
     if (error instanceof Error) throw error

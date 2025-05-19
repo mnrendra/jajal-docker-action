@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 
-import { argv } from 'node:process'
+import main from './main'
 
-const [version, notes, branch] = argv.slice(2)
-
-console.log('----------version--------------:\n', version)
-console.log('----------notes----------------:\n', notes)
-console.log('----------branch---------------:\n', branch)
+main()
+  .then((result) => {
+    console.log('result:', result)
+  })
+  .catch((error) => {
+    if (error instanceof Error) throw error
+    throw new Error('Unknown error')
+  })
