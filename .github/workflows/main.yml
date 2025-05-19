@@ -25,12 +25,16 @@ jobs:
           git_committer_email: ${{ vars.GIT_COMMITTER_EMAIL }}
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
+      
+      #
+      - name: Check Node Pre
+        run: ls -laihs && node --version || true
 
       # Hello world action step
       - name: Hello world action step
         id: hello
         uses: mnrendra/jajal-docker-action@9f83055b8d732dd0a917f32a2279728cf1de35b2
 
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+      #
+      - name: Check Node Post
+        run: ls -laihs && node --version || true
