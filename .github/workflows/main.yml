@@ -32,7 +32,6 @@ jobs:
 
       # Hello world action step
       - name: Hello world action step
-        id: hello
         uses: mnrendra/jajal-docker-action@9f83055b8d732dd0a917f32a2279728cf1de35b2
 
       #

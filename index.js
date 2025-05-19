@@ -51,10 +51,8 @@ const main = async () => {
   }
 
   const release = normalizeModule(semanticRelease)
-
-  const { stdout, stderr } = await execCmd('ls -laihs && node --version || true')
-
-  console.log('susu:\n', stdout, '\n', stderr)
+  
+  console.log(env)
 
   const result = await release(config, {
     env: {
