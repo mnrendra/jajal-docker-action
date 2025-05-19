@@ -44,4 +44,6 @@ runs:
     GIT_AUTHOR_EMAIL: ${{ inputs.git-author-email }}
     GIT_COMMITTER_NAME: ${{ inputs.git-committer-name }}
     GIT_COMMITTER_EMAIL: ${{ inputs.git-committer-email }}
+    GPG_PRIVATE_KEY: ${{ inputs.gpg-private-key }}
+    GPG_PASSPHRASE: ${{ inputs.gpg-passphrase }}
     GITHUB_TOKEN: ${{ inputs.token }}

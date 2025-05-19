@@ -13,6 +13,9 @@ const main = async (): Promise<string> => {
 
   const message = `release: ${tag}`
 
+  const importgpg = await execCmd('./bin/importgpg.sh')
+  console.log('importgpg:\n', importgpg.stdout, '\n', importgpg.stderr)
+
   const gitconfig = await execCmd('git config --list')
   console.log('gitconfig:\n', gitconfig.stdout, '\n', gitconfig.stderr)
 
