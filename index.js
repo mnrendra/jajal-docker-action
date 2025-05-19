@@ -46,13 +46,13 @@ const main = async () => {
 
   await execCmd('git config --global --add safe.directory /github/workspace')
 
+  console.log(env)
+
   if (!env.GITHUB_TOKEN) {
     throw new Error('github-token is not provided')
   }
 
   const release = normalizeModule(semanticRelease)
-  
-  console.log(env)
 
   const result = await release(config, {
     env: {
