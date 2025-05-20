@@ -1,5 +1,7 @@
 import { argv } from 'node:process'
 
+import { getInput } from '@actions/core'
+
 import { execCmd } from '../utils'
 
 const main = async (): Promise<string> => {
@@ -7,23 +9,27 @@ const main = async (): Promise<string> => {
 
   const tag = `v${version}`
 
+  const gitAuthorName = getInput('git-author-name')
+  const gitAuthorEmail = getInput('git-author-email')
+
+  const gitCommitterName = getInput('git-committer-name')
+  const gitCommitterEmail = getInput('git-committer-email')
+
+  const gpgPassphrase = getInput('gpg-passphrase')
+
+  console.log('gitAuthorName:', gitAuthorName)
+  console.log('gitAuthorEmail:', gitAuthorEmail)
+
+  console.log('gitCommitterName:', gitCommitterName)
+  console.log('gitCommitterEmail:', gitCommitterEmail)
+
+  console.log('gpgPassphrase:', gpgPassphrase)
+
   await execCmd(`git tag -d ${tag}`)
 
   await execCmd(`git push origin -d tag ${tag}`)
 
   const message = `release: ${tag}`
-
-  const importgpg = await execCmd('./bin/importgpg.sh')
-  console.log('importgpg:\n', importgpg.stdout, '\n', importgpg.stderr)
-
-  const gitconfig = await execCmd('git config --list')
-  console.log('gitconfig:\n', gitconfig.stdout, '\n', gitconfig.stderr)
-
-  const gpgk = await execCmd('gpg --list-secret-keys --keyid-format=long')
-  console.log('gpgk:\n', gpgk.stdout, '\n', gpgk.stderr)
-
-  const gpgconf = await execCmd('gpgconf --list-dirs')
-  console.log('gpgconf:\n', gpgconf.stdout, '\n', gpgconf.stderr)
 
   await execCmd(`git tag -s ${tag} -m "${message}\n\n${notes}"`)
 

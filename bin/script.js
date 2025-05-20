@@ -1,12 +1,4 @@
 #!/usr/bin/env node
-"use strict";var l=require("node:process"),d=require("node:child_process");const s=(t,n={})=>new Promise((g,o)=>{try{d.exec(t,n,(r,e,i)=>{r!=null&&o(r),g({stdout:e,stderr:i})})}catch(r){o(r)}}),u=async()=>{const[t,n,g]=l.argv.slice(2),o=`v${t}`;await s(`git tag -d ${o}`),await s(`git push origin -d tag ${o}`);const r=`release: ${o}`,e=await s("./bin/importgpg.sh");console.log(`importgpg:
-`,e.stdout,`
-`,e.stderr);const i=await s("git config --list");console.log(`gitconfig:
-`,i.stdout,`
-`,i.stderr);const c=await s("gpg --list-secret-keys --keyid-format=long");console.log(`gpgk:
-`,c.stdout,`
-`,c.stderr);const a=await s("gpgconf --list-dirs");return console.log(`gpgconf:
-`,a.stdout,`
-`,a.stderr),await s(`git tag -s ${o} -m "${r}
+"use strict";var m=require("node:process"),r=require("@actions/core"),h=require("node:child_process");const i=(t,a={})=>new Promise((n,e)=>{try{h.exec(t,a,(o,s,g)=>{o!=null&&e(o),n({stdout:s,stderr:g})})}catch(o){e(o)}}),p=async()=>{const[t,a,n]=m.argv.slice(2),e=`v${t}`,o=r.getInput("git-author-name"),s=r.getInput("git-author-email"),g=r.getInput("git-committer-name"),c=r.getInput("git-committer-email"),l=r.getInput("gpg-passphrase");console.log("gitAuthorName:",o),console.log("gitAuthorEmail:",s),console.log("gitCommitterName:",g),console.log("gitCommitterEmail:",c),console.log("gpgPassphrase:",l),await i(`git tag -d ${e}`),await i(`git push origin -d tag ${e}`);const u=`release: ${e}`;return await i(`git tag -s ${e} -m "${u}
 
-${n}"`),await s(`git push origin ${o}`),g};u().then(t=>{console.log("result:",t)}).catch(t=>{throw t instanceof Error?t:new Error("Unknown error")});
+${a}"`),await i(`git push origin ${e}`),n};p().then(t=>{console.log("result:",t)}).catch(t=>{throw t instanceof Error?t:new Error("Unknown error")});
