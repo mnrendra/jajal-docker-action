@@ -22,23 +22,23 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Import GPG
-      - name: Import GPG
-        uses: crazy-max/ghaction-import-gpg@e89d40939c28e39f97cf32126055eeae86ba74ec # v6.3.0
-        with:
-          git_user_signingkey: true
-          git_committer_name: ${{ vars.GIT_COMMITTER_NAME }}
-          git_committer_email: ${{ vars.GIT_COMMITTER_EMAIL }}
-          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }}
+      # # Import GPG
+      # - name: Import GPG
+      #   uses: crazy-max/ghaction-import-gpg@e89d40939c28e39f97cf32126055eeae86ba74ec # v6.3.0
+      #   with:
+      #     git_user_signingkey: true
+      #     git_committer_name: ${{ vars.GIT_COMMITTER_NAME }}
+      #     git_committer_email: ${{ vars.GIT_COMMITTER_EMAIL }}
+      #     gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+      #     passphrase: ${{ secrets.PASSPHRASE }}
 
       # Hello world action step
       - name: Hello world action step
-        uses: mnrendra/jajal-docker-action@502bf7d05413bb935c8757af4f5f13a9258f5cde
+        uses: mnrendra/jajal-docker-action@779e310b802d5d185bbe703ea4a705fc6d4baadd
         with:
-          git-author-name: ${{ vars.GIT_AUTHOR_NAME }}
-          git-author-email: ${{ vars.GIT_AUTHOR_EMAIL }}
-          git-committer-name: ${{ vars.GIT_COMMITTER_NAME }}
-          git-committer-email: ${{ vars.GIT_COMMITTER_EMAIL }}
+          # git-author-name: ${{ vars.GIT_AUTHOR_NAME }}
+          # git-author-email: ${{ vars.GIT_AUTHOR_EMAIL }}
+          # git-committer-name: ${{ vars.GIT_COMMITTER_NAME }}
+          # git-committer-email: ${{ vars.GIT_COMMITTER_EMAIL }}
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.PASSPHRASE }}
