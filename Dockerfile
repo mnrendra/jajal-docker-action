@@ -33,9 +33,11 @@ RUN \
   ls -laihs ~ && \
   #
   echo "------- workdir directory ---------------" && \
-  ls -laihs /@mnrendra/gha-publish-action && \
+  #
+  echo "------- consumer (/github/workspace) directory ---------------" && \
+  ls -laihs /github/workspace && \
   #
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["node", "./index.js"]
+ENTRYPOINT ["node", "/@mnrendra/gha-publish-action/index.js"]
