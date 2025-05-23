@@ -23,22 +23,22 @@ const main = async (): Promise<string> => {
   console.log('stdout:', a.stdout)
 
   console.log('-------------- delete remote tag ---------')
-  const b = await execCmd(`git push origin -d tag ${tag}`)
+  const b = await execCmd(`git push origin -d tag ${tag} --signed=false`)
   console.log('stderr:', b.stderr)
   console.log('stdout:', b.stdout)
 
   console.log('-------------- commit release ------------')
-  const c = await execCmd(`git commit --allow-empty -m "${message}\n\n${notes}"`)
+  const c = await execCmd(`git commit -S --allow-empty -m "${message}\n\n${notes}"`)
   console.log('stderr:', c.stderr)
   console.log('stdout:', c.stdout)
 
   console.log('-------------- tag release ---------------')
-  const d = await execCmd(`git tag ${tag} -m "${message}\n\n${notes}"`)
+  const d = await execCmd(`git tag -s ${tag} -m "${message}\n\n${notes}"`)
   console.log('stderr:', d.stderr)
   console.log('stdout:', d.stdout)
 
   console.log('-------------- push release --------------')
-  const e = await execCmd('git push origin --follow-tags')
+  const e = await execCmd('git push origin --follow-tags --signed=false')
   console.log('stderr:', e.stderr)
   console.log('stdout:', e.stdout)
 
