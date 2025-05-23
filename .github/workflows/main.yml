@@ -36,9 +36,8 @@ jobs:
       - name: Hello world action step
         uses: mnrendra/jajal-docker-action@5807a7e3ee53b52f0cadd3d73a488cb5fdc5fc97
         with:
-          # git-author-name: ${{ vars.GIT_AUTHOR_NAME }}
-          # git-author-email: ${{ vars.GIT_AUTHOR_EMAIL }}
-          # git-committer-name: ${{ vars.GIT_COMMITTER_NAME }}
-          # git-committer-email: ${{ vars.GIT_COMMITTER_EMAIL }}
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.PASSPHRASE }}
+          git-sign-commit: true
+          git-sign-tag: true
+          git-sign-push: false
