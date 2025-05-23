@@ -1,3 +1,5 @@
+import { cwd } from 'node:process'
+
 import {
   type PrivateKeyInfo,
   type TrustLevel,
@@ -7,6 +9,7 @@ import {
 
 import {
   type Options,
+  restoreDir,
   validateOptions
 } from './utils'
 
@@ -50,6 +53,7 @@ export interface Outputs extends
   gitPushGpgsign: GitPushGpgsign
   gitUserName: string
   gitUserEmail: string
+  workdir: string
 }
 
 export const importGPG = async (
@@ -106,11 +110,15 @@ export const importGPG = async (
       gitUserEmail: gitConfigs.userEmail,
       gitCommitGpgsign: gitConfigs.commitGpgsign,
       gitTagGpgsign: gitConfigs.tagGpgsign,
-      gitPushGpgsign: gitConfigs.pushGpgsign
+      gitPushGpgsign: gitConfigs.pushGpgsign,
+      workdir: cwd()
     }
+
+    restoreDir()
 
     return outputs
   } catch (error) {
+    restoreDir()
     if (error instanceof Error) throw error
     throw new Error('Unknown error', { cause: error })
   }
