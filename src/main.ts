@@ -86,7 +86,7 @@ const main = async (): Promise<void> => {
   await execCmd('echo "tes" >> tes.txt')
   await execCmd('git add .')
   await execCmd('git commit -S -m "chore: add tes file"')
-  await execCmd('git commit -s v4.0.0-tes -m "release: v4.0.0-tes"')
+  await execCmd('git tag -s v4.0.0-tes -m "release: v4.0.0-tes"')
   await execCmd('git push --follow-tags')
 }
 
