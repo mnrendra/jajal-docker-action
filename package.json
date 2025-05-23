@@ -5,7 +5,7 @@
   "private": false,
   "bin": "bin/index.js",
   "scripts": {
-    "build": "rm -rf bin && npx rollup -c && cp src/scripts/importgpg.sh bin/importgpg.sh && cp src/scripts/gpg-wrapper.sh bin/gpg-wrapper.sh && cp src/scripts/script.sh bin/script.sh && chmod +x bin/*",
+    "build": "rm -rf bin && npx rollup -c && chmod +x bin/*",
     "commit": "npx cz",
     "security": "scorecard --local .",
     "test": "npm run build && npx jest --coverage"

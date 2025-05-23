@@ -1,6 +1,6 @@
 import type { Options as SROptions, PublishContext } from 'semantic-release'
 
-import { execCmd } from '../../../utils'
+import { execCmd } from '../../../../utils'
 
 import { parseContext } from './utils'
 
@@ -33,20 +33,20 @@ const main = async (
 
   const message = `release: ${tag}`
 
-  console.log('-------------- dari plugin: commit release ------------')
-  const c = await execCmd(`git commit -S --allow-empty -m "${message}\n\n${notes}"`)
-  console.log('stderr:', c.stderr)
-  console.log('stdout:', c.stdout)
+  // console.log('-------------- dari plugin: commit release ------------')
+  // const c = await execCmd(`git commit -S --allow-empty -m "${message}\n\n${notes}"`)
+  // console.log('stderr:', c.stderr)
+  // console.log('stdout:', c.stdout)
 
   console.log('-------------- dari plugin: tag release ---------------')
   const d = await execCmd(`git tag -s ${tag} -m "${message}\n\n${notes}"`)
   console.log('stderr:', d.stderr)
   console.log('stdout:', d.stdout)
 
-  console.log('-------------- dari plugin: push commit release --------------')
-  const e = await execCmd(`git push origin ${branch}`)
-  console.log('stderr:', e.stderr)
-  console.log('stdout:', e.stdout)
+  // console.log('-------------- dari plugin: push commit release --------------')
+  // const e = await execCmd(`git push origin ${branch}`)
+  // console.log('stderr:', e.stderr)
+  // console.log('stdout:', e.stdout)
 
   console.log('-------------- dari plugin: push tag release --------------')
   const f = await execCmd(`git push origin ${tag}`)

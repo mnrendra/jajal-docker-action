@@ -14,19 +14,9 @@ export default [
   //
   {
     external: (id) => !/^[./]/.test(id),
-    input: 'src/scripts/index.ts',
+    input: 'src/plugins/sign-tag/index.ts',
     output: {
-      file: 'bin/script.js',
-      format: 'cjs'
-    },
-    plugins: esbuild({ minify: true })
-  },
-  //
-  {
-    external: (id) => !/^[./]/.test(id),
-    input: 'src/plugin/index.ts',
-    output: {
-      file: 'bin/plugin.js',
+      file: 'plugins/sign-tag/index.js',
       format: 'cjs'
     },
     plugins: esbuild({ minify: true })
