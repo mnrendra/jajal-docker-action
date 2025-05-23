@@ -1,10 +1,14 @@
 import { store } from '../store'
 
+import chalk from './chalk'
+
 const success = (
   message: string
 ): void => {
   if (store.verbose) {
-    console.log(`\u001B[32m${message}\u001B[39m`)
+    const green = '\u001B[32m'
+
+    console.log(chalk(message, green))
   }
 }
 

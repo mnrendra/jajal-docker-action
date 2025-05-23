@@ -153,6 +153,6 @@ export const cleanupGPG = async (
   } catch (error) {
     const warnMsg = error instanceof Error ? error.message : 'Unknown error'
     warn(warnMsg)
-    warn(error)
+    warn(`${error as any}`)
   }
 }

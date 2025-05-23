@@ -1,11 +1,15 @@
 import { store } from '../store'
 
+import chalk from './chalk'
+
 const warn = (
-  message: any
+  message: string
 ): void => {
   if (store.verbose) {
-    console.log('\u001B[33mWARNING:\u001B[39m')
-    console.log(`\u001B[33m${message}\u001B[39m`)
+    const yellow = '\u001B[33m'
+
+    console.log(chalk('WARNING:', yellow))
+    console.log(chalk(message, yellow))
   }
 }
 

@@ -1,10 +1,14 @@
 import { store } from '../store'
 
+import chalk from './chalk'
+
 const debug = (
   message: string
 ): void => {
   if (store.verbose) {
-    console.log(`\u001B[90m${message}\u001B[39m`)
+    const grey = '\u001B[90m'
+
+    console.log(chalk(message, grey))
   }
 }
 
