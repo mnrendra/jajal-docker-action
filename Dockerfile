@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 COPY package.json /package.json
 COPY package-lock.json /package-lock.json
 
-# COPY bin/index.js /index.js
+COPY bin/index.js /index.js
 # COPY bin/script.js /script.js
 # COPY plugins/sign-tag/index.js /plugin-sign-tag.js
 
