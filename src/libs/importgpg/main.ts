@@ -65,7 +65,7 @@ export const importGPG = async (
 
     const { workdir, fingerprint, passphrase, trustLevel } = opt
 
-    setWorkdir(workdir)
+    await setWorkdir(workdir)
 
     const gpg = await getGPGInfo()
 
