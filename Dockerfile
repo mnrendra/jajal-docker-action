@@ -17,7 +17,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # COPY bin/importgpg.sh /importgpg.sh
 # COPY bin/gpg-wrapper.sh /gpg-wrapper.sh
 
-# COPY setup.sh /setup.sh
+COPY setup.sh /setup.sh
 
 #
 RUN chmod +x /setup.sh
