@@ -5,29 +5,24 @@ ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /action
 
 COPY \
-  ./plugins/sign-tag/index.js \
-  ./@mnrendra/semantic-release-plugin-publish-github-action/index.js
+  "plugins/sign-tag/index.js" \
+  "@mnrendra/semantic-release-plugin-publish-github-action/index.js"
 
 COPY \
-  ./dist/index.js \
-  ./index.js
-
-COPY \
-  ./clean-package.config.json \
-  ./package.json \
-  ./
+  "package.json" \
+  "package-lock.json" \
+  "dist/index.js" \
+  "."
 
 RUN \
-  apt-get update -qq >/dev/null && \
-  apt-get install -y --no-install-recommends -qq git gnupg ca-certificates >/dev/null && \
-  npx clean-package && \
-  npm install && \
-  npm cache clean --force && \
-  npm cache verify && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  apt-get update -qq >/dev/null 2>&1 && \
+  apt-get install -y --no-install-recommends -qq \
+    ca-certificates \
+    git \
+    gnupg \
+  >/dev/null 2>&1 && \
+  npm ci --production --silent && \
+  npm cache clean --force >/dev/null 2>&1 && \
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ~/.npm/_cacache
 
-# ENV NODE_PATH=/action/node_modules
-
-# Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["node", "/action/index.js"]
+ENTRYPOINT ["node", "/action/dist/index.js"]
