@@ -17,7 +17,6 @@ import {
   type GitScope,
   type GitPushGpgsign,
   type GPGInfo,
-  type KeygripPair,
   configGit,
   configGPGAgent,
   getGPGInfo,
@@ -43,7 +42,7 @@ export interface Outputs extends
   log: string
   // ConfigureGPGAgent
   gpgHome: string
-  keygripPairs: KeygripPair[]
+  keygrips: string[]
   // SetTrustLevel
   trustLevel?: TrustLevel
   // ConfigureGit

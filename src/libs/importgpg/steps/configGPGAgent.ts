@@ -7,16 +7,11 @@ import {
   presetPassphrase
 } from '../libs'
 
-import { info } from '../utils'
-
-export interface KeygripPair {
-  keygrip: string
-  keyinfo: string
-}
+import { debug, info } from '../utils'
 
 interface GPGAgentInfo {
   gpgHome: string
-  keygripPairs: KeygripPair[]
+  keygrips: string[]
 }
 
 const configGPGAgent = async (
@@ -24,7 +19,7 @@ const configGPGAgent = async (
   fingerprint?: string,
   passphrase?: string
 ): Promise<GPGAgentInfo> => {
-  const gpgAgentInfo: GPGAgentInfo = { gpgHome: '', keygripPairs: [] }
+  const gpgAgentInfo: GPGAgentInfo = { gpgHome: '', keygrips: [] }
 
   if (passphrase === undefined) return gpgAgentInfo
 
@@ -42,21 +37,21 @@ const configGPGAgent = async (
 
     info(`Presetting passphrase for key ${fingerprint} with keygrip ${keygrip}`)
     const keyinfo = await presetPassphrase(keygrip, passphrase)
+    debug(keyinfo)
 
-    gpgAgentInfo.keygripPairs = [{ keygrip, keyinfo }]
+    gpgAgentInfo.keygrips = [keygrip]
   } else {
     info('---------------- Getting keygrips ------------------------:')
 
     const keygrips = await getKeygrips(digest)
 
-    const keygripPairs = []
     for (const keygrip of keygrips) {
       info(`Presetting passphrase for ${keygrip}`)
       const keyinfo = await presetPassphrase(keygrip, passphrase)
-      keygripPairs.push({ keygrip, keyinfo })
+      debug(keyinfo)
     }
 
-    gpgAgentInfo.keygripPairs = keygripPairs
+    gpgAgentInfo.keygrips = keygrips
   }
 
   return gpgAgentInfo
