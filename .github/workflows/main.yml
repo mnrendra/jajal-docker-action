@@ -24,7 +24,7 @@ jobs:
 
       # Hello world action step
       - name: Hello world action step
-        uses: mnrendra/jajal-docker-action@4a4fea2f834f213d22204ccd1fecc34af42c8de7
+        uses: mnrendra/jajal-docker-action@fc95d99ea8fee234350b2743df25362229d15cfd
         with:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.PASSPHRASE }}
