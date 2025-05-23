@@ -25,6 +25,16 @@ RUN \
   npm cache clean --force && \
   npm cache verify && \
   apt-get clean && \
+  #
+  echo "------- current working directory -------" && \
+  ls -laihs ./ && \
+  #
+  echo "------- home working directory ----------" && \
+  ls -laihs ~ && \
+  #
+  echo "------- workdir directory ---------------" && \
+  ls -laihs /@mnrendra/gha-publish-action && \
+  #
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
