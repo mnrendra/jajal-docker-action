@@ -1,4 +1,4 @@
-import execGpg from './execGpg'
+import execGpgconf from './execGpgconf'
 
 export interface Dirs {
   libdir: string
@@ -17,7 +17,7 @@ const parseLineDir = (
 }
 
 const getDirs = async (): Promise<Dirs> => {
-  const { stdoutLines } = await execGpg(['--list-dirs'])
+  const { stdoutLines } = await execGpgconf(['--list-dirs'])
 
   const dirs: Dirs = {
     libdir: '',
