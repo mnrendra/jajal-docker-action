@@ -34,8 +34,8 @@ RUN \
   #
   echo "------- workdir directory ---------------" && \
   #
-  echo "------- consumer (/github/workspace) directory ---------------" && \
-  ls -laihs /github/workspace && \
+  # echo "------- consumer (/github/workspace) directory ---------------" && \
+  # ls -laihs /github/workspace && \
   #
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
