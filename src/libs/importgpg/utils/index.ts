@@ -5,6 +5,7 @@ import execCmd from './execCmd'
 import info from './info'
 import normalizeModule from './normalizeModule'
 import parseStdoutLines from './parseStdoutLines'
+import restoreDir from './restoreDir'
 import spawnCmd from './spawnCmd'
 import validateOptions from './validateOptions'
 
@@ -16,5 +17,6 @@ export {
   normalizeModule,
   parseStdoutLines,
   spawnCmd,
+  restoreDir,
   validateOptions
 }
