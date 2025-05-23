@@ -2,6 +2,8 @@ FROM node@sha256:ed0e340edf19b7014fd6b0a5f7048b73826b6ae6104132184243f9422b1e995
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+WORKDIR /@mnrendra/gha-publish-action
+
 COPY \
   ./plugins/sign-tag/index.js \
   ./@mnrendra/semantic-release-plugin-publish-github-action/index.js

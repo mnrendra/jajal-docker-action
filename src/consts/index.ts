@@ -1,3 +1,5 @@
+export const WORKDIR = '/github/workspace'
+
 export const PRERELEASE_BRANCHES = [
   'alpha',
   'beta',
