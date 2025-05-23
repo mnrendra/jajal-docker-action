@@ -28,7 +28,7 @@ COPY \
 
 RUN \
   apt-get update -qq >/dev/null && \
-  apt-get install -y --no-install-recommends -qq git gnupg >/dev/null && \
+  apt-get install -y --no-install-recommends -qq git gnupg ca-certificates >/dev/null && \
   npx clean-package && \
   npm install && \
   npm cache clean --force && \
