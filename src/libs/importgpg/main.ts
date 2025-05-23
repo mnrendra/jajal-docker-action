@@ -36,7 +36,8 @@ export interface Outputs extends
   GPGInfo,
   Omit<PrivateKeyInfo, 'id' | 'digest'> {
   // PrivateKeyInfo
-  keyId: string
+  digest: string
+  keyid: string
   fingerprint: string
   // ImportGPG
   log: string
@@ -100,8 +101,8 @@ export const importGPG = async (
       ...key,
       ...agent,
       ...gitConfigs,
-      keyId: key.id,
-      fingerprint: key.digest,
+      keyid: id,
+      fingerprint: fingerprint ?? digest,
       log,
       trustLevel,
       gitConfigScope: gitConfigs.scope,

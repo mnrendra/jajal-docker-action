@@ -79,7 +79,7 @@ const main = async (): Promise<void> => {
       verbose: true
     })
 
-    digest = outputs.fingerprint
+    digest = outputs.digest
 
     console.log('outputs:', outputs)
   }
