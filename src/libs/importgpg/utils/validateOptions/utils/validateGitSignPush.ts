@@ -1,7 +1,7 @@
 import type { GitPushGpgsign } from '../../../steps'
 
 const validateGitSignPush = (
-  gitSignPush: GitPushGpgsign = 'if-asked'
+  gitSignPush: GitPushGpgsign = false
 ): GitPushGpgsign => {
   if (
     typeof gitSignPush !== 'boolean' &&

@@ -23,7 +23,7 @@ const main = async (): Promise<string> => {
   console.log('stdout:', a.stdout)
 
   console.log('-------------- delete remote tag ---------')
-  const b = await execCmd(`git push origin -d tag ${tag} --signed=false`)
+  const b = await execCmd(`git push origin -d tag ${tag}`)
   console.log('stderr:', b.stderr)
   console.log('stdout:', b.stdout)
 
@@ -38,7 +38,7 @@ const main = async (): Promise<string> => {
   console.log('stdout:', d.stdout)
 
   console.log('-------------- push release --------------')
-  const e = await execCmd('git push origin --follow-tags --signed=false')
+  const e = await execCmd('git push origin --follow-tags')
   console.log('stderr:', e.stderr)
   console.log('stdout:', e.stdout)
 

@@ -11,6 +11,7 @@ const plugins: ReadonlyArray<PluginSpec<any>> = [
   ['@semantic-release/commit-analyzer', { releaseRules }],
   '@semantic-release/release-notes-generator',
   ['@semantic-release/npm', { npmPublish: false }],
+  ['./bin/plugin.js', {}],
   ['@semantic-release/exec', {
     /* eslint-disable-next-line no-template-curly-in-string */
     publishCmd: './bin/script.js "${nextRelease.version}" "${nextRelease.notes}" "${branch.name}"'

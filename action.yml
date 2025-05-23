@@ -34,7 +34,7 @@ inputs:
     default: false
   git-sign-push:
     description: Set Git push.gpgsign to automate signing git pushes
-    default: 'if-asked'
+    default: false
   token:
     description: GitHub token
     default: ${{ github.token }}

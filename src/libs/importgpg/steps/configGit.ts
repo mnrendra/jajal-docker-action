@@ -53,7 +53,7 @@ const configGit = async (
     userSigningkey: '',
     commitGpgsign: false,
     tagGpgsign: false,
-    pushGpgsign: 'if-asked',
+    pushGpgsign: false,
     userName: '',
     userEmail: ''
   }

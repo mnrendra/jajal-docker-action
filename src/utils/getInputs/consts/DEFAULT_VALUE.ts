@@ -10,7 +10,7 @@ const DEFAULT_VALUE = Object.freeze({
   GIT_SIGN_USER: true,
   GIT_SIGN_COMMIT: false,
   GIT_SIGN_TAG: false,
-  GIT_SIGN_PUSH: 'if-asked',
+  GIT_SIGN_PUSH: false,
   TOKEN: env.GITHUB_TOKEN
 })
 

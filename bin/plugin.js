@@ -1,0 +1,1 @@
+"use strict";const l=({branch:n,nextRelease:o})=>({branch:n.name,version:o.version,tag:o.gitTag,notes:o.notes??""}),a=async(n={},o)=>{const{branch:s,version:e,tag:c,notes:t}=l(o);console.log("options:",n),console.log("branch:",s),console.log("version:",e),console.log("tag:",c),console.log("notes:",t)};exports.publish=a;
