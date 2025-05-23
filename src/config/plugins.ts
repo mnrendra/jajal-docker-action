@@ -7,7 +7,7 @@ const releaseRules = COMMIT_TYPES.map((type) => ({
   release: 'patch'
 } as const))
 
-const CONTAINER_WORKDIR = '/@mnrendra/gha-publish-action'
+const CONTAINER_WORKDIR = '.'
 
 const plugins: ReadonlyArray<PluginSpec<any>> = [
   ['@semantic-release/commit-analyzer', { releaseRules }],

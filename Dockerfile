@@ -2,7 +2,16 @@ FROM node@sha256:ed0e340edf19b7014fd6b0a5f7048b73826b6ae6104132184243f9422b1e995
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-WORKDIR /@mnrendra/gha-publish-action
+# WORKDIR /@mnrendra/gha-publish-action
+
+RUN \
+  # ----------------------------------------------------
+  echo "------- before do anything directory ----" && \
+  ls -laihs . && \
+  # ----------------------------------------------------
+  echo "------- pwd -----------------------------" && \
+  pwd
+  # ----------------------------------------------------
 
 COPY \
   ./plugins/sign-tag/index.js \
@@ -25,17 +34,20 @@ RUN \
   npm cache clean --force && \
   npm cache verify && \
   apt-get clean && \
-  #
+  # ----------------------------------------------------
   echo "------- current working directory -------" && \
   ls -laihs ./ && \
-  #
+  # ----------------------------------------------------
   echo "------- home working directory ----------" && \
   ls -laihs ~ && \
-  #
+  # ----------------------------------------------------
   echo "------- workdir directory ---------------" && \
   ls -laihs /@mnrendra/gha-publish-action && \
-  #
+  # ----------------------------------------------------
+  echo "------- pwd -----------------------------" && \
+  pwd && \
+  # ----------------------------------------------------
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["node", "/@mnrendra/gha-publish-action/index.js"]
+ENTRYPOINT ["node", "./index.js"]

@@ -2,7 +2,7 @@
 
 import main from './main'
 
-console.log(process.cwd())
+console.log('dari index.js:', process.cwd())
 
 main()
   .then((result) => {
