@@ -2,7 +2,7 @@ FROM node@sha256:ed0e340edf19b7014fd6b0a5f7048b73826b6ae6104132184243f9422b1e995
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# WORKDIR /@mnrendra/gha-publish-action
+WORKDIR /action
 
 RUN \
   # ----------------------------------------------------
@@ -41,13 +41,12 @@ RUN \
   echo "------- home working directory ----------" && \
   ls -laihs ~ && \
   # ----------------------------------------------------
-  echo "------- workdir directory ---------------" && \
-  ls -laihs /@mnrendra/gha-publish-action && \
-  # ----------------------------------------------------
   echo "------- pwd -----------------------------" && \
   pwd && \
   # ----------------------------------------------------
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+ENV NODE_PATH=/action/node_modules
+
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["node", "./index.js"]
+ENTRYPOINT ["node", "/action/index.js"]
