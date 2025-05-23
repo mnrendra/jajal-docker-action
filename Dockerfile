@@ -4,15 +4,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 WORKDIR /action
 
-RUN \
-  # ----------------------------------------------------
-  echo "------- before do anything directory ----" && \
-  ls -laihs . && \
-  # ----------------------------------------------------
-  echo "------- pwd -----------------------------" && \
-  pwd
-  # ----------------------------------------------------
-
 COPY \
   ./plugins/sign-tag/index.js \
   ./@mnrendra/semantic-release-plugin-publish-github-action/index.js
@@ -34,16 +25,6 @@ RUN \
   npm cache clean --force && \
   npm cache verify && \
   apt-get clean && \
-  # ----------------------------------------------------
-  echo "------- current working directory -------" && \
-  ls -laihs ./ && \
-  # ----------------------------------------------------
-  echo "------- home working directory ----------" && \
-  ls -laihs ~ && \
-  # ----------------------------------------------------
-  echo "------- pwd -----------------------------" && \
-  pwd && \
-  # ----------------------------------------------------
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV NODE_PATH=/action/node_modules
