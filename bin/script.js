@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-"use strict";var c=require("node:process"),g=require("node:child_process");const s=(r,n={})=>new Promise((o,t)=>{try{g.exec(r,n,(e,i,a)=>{e!=null&&t(e),o({stdout:i,stderr:a})})}catch(e){t(e)}}),u=async()=>{const[r,n,o]=c.argv.slice(2),t=`v${r}`;await s(`git tag -d ${t}`),await s(`git push origin -d tag ${t}`);const e=`release: ${t}`;return await s(`git tag -s ${t} -m "${e}
+"use strict";var n=require("node:process"),G=require("node:child_process");require("@actions/core");const o=(e,i={})=>new Promise((s,r)=>{try{G.exec(e,i,(t,a,c)=>{t!=null&&r(t),s({stdout:a,stderr:c})})}catch(t){r(t)}});Object.freeze({WORKDIR:".",GPG_PRIVATE_KEY:void 0,GPG_PASSPHRASE:void 0,GPG_FINGERPRINT:void 0,GPG_TRUST_LEVEL:void 0,GIT_SCOPE:"local",GIT_SIGN_USER:!0,GIT_SIGN_COMMIT:!1,GIT_SIGN_TAG:!1,GIT_SIGN_PUSH:"if-asked",TOKEN:n.env.GITHUB_TOKEN});const _=async()=>{const[e,i,s]=n.argv.slice(2),r=`v${e}`;await o(`git tag -d ${r}`),await o(`git push origin -d tag ${r}`);const t=`release: ${r}`;return await o(`git tag -s ${r} -m "${t}
 
-${n}"`),await s(`git push origin ${t}`),o};u().then(r=>{console.log("result:",r)}).catch(r=>{throw r instanceof Error?r:new Error("Unknown error")});
+${i}"`),await o(`git push origin ${r}`),s};_().then(e=>{console.log("result:",e)}).catch(e=>{throw e instanceof Error?e:new Error("Unknown error")});

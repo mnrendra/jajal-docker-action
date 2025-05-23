@@ -9,41 +9,48 @@ branding:
   color: green
 
 inputs:
-  git-author-name:
-    description: Git author name
-    required: false
-    default: GitOps Release
-  git-author-email:
-    description: Git author email
-    required: false
-    default: gitops-release@users.noreply.github.com
-  git-committer-name:
-    description: Git committer name
-    required: false
-    default: GitOps Release
-  git-committer-email:
-    description: Git committer email
-    required: false
-    default: gitops-release@users.noreply.github.com
+  workdir:
+    description: Working directory
+    default: '.'
   gpg-private-key:
-    description: GPG private key
-    required: false
+    description: GPG private key for signing Git commits, tags, and pushes
   gpg-passphrase:
-    description: GPG passphrase
-    required: false
+    description: Passphrase of the GPG private key
+  gpg-fingerprint:
+    description: Specific fingerprint to use subkey of the GPG private key
+  gpg-trust-level:
+    description: Trust level of the GPG private key
+  git-scope:
+    description: Git config scope
+    default: 'local'
+  git-sign-user:
+    description: Set Git user.signingkey within GPG signing keyID
+    default: true
+  git-sign-commit:
+    description: Set Git commit.gpgsign to automate signing git commits
+    default: false
+  git-sign-tag:
+    description: Set Git tag.gpgsign to automate signing git tags
+    default: false
+  git-sign-push:
+    description: Set Git push.gpgsign to automate signing git pushes
+    default: 'if-asked'
   token:
     description: GitHub token
-    required: false
     default: ${{ github.token }}
 
 runs:
   using: docker
   image: Dockerfile
-  env:
-    GIT_AUTHOR_NAME: ${{ inputs.git-author-name }}
-    GIT_AUTHOR_EMAIL: ${{ inputs.git-author-email }}
-    GIT_COMMITTER_NAME: ${{ inputs.git-committer-name }}
-    GIT_COMMITTER_EMAIL: ${{ inputs.git-committer-email }}
-    GPG_PRIVATE_KEY: ${{ inputs.gpg-private-key }}
-    GPG_PASSPHRASE: ${{ inputs.gpg-passphrase }}
-    GITHUB_TOKEN: ${{ inputs.token }}
+  # env:
+  #   WORKDIR: ${{ inputs.workdir }}
+  #   GPG_PRIVATE_KEY: ${{ inputs.gpg-private-key }}
+  #   GPG_PASSPHRASE: ${{ inputs.gpg-passphrase }}
+  #   GPG_FINGERPRINT: ${{ inputs.gpg-fingerprint }}
+  #   GPG_TRUST_LEVEL: ${{ inputs.gpg-trust-level }}
+  #   GIT_SCOPE: ${{ inputs.git-scope }}
+  #   GIT_SIGN_USER: ${{ inputs.git-sign-user }}
+  #   GIT_SIGN_COMMIT: ${{ inputs.git-sign-commit }}
+  #   GIT_SIGN_TAG: ${{ inputs.git-sign-tag }}
+  #   GIT_SIGN_PUSH: ${{ inputs.git-sign-push }}
+  #   TOKEN: ${{ inputs.token }}

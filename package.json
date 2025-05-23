@@ -24,8 +24,15 @@
     "url": "https://github.com/mnrendra/jajal-docker-action/issues"
   },
   "homepage": "https://github.com/mnrendra/jajal-docker-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "addressparser": "^1.0.1",
+    "nanoid": "^5.1.5",
+    "openpgp": "^6.1.1"
+  },
   "devDependencies": {
     "@semantic-release/exec": "^7.1.0",
+    "@types/addressparser": "^1.0.3",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.15.19",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
@@ -44,8 +51,5 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   },
-  "keywords": [],
-  "dependencies": {
-    "@actions/core": "^1.11.1"
-  }
+  "keywords": []
 }

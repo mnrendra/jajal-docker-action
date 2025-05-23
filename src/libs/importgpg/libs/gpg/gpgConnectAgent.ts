@@ -1,0 +1,16 @@
+import { execCmd } from '../../utils'
+
+type ConnectAgentCommand =
+| 'RELOADAGENT'
+| `PRESET_PASSPHRASE ${string} -1 ${string}`
+| `KEYINFO ${string}`
+| 'KILLAGENT'
+
+const gpgConnectAgent = async (
+  command: ConnectAgentCommand
+): Promise<string> => {
+  const { stdout } = await execCmd(`gpg-connect-agent "${command}" /bye`)
+  return stdout
+}
+
+export default gpgConnectAgent

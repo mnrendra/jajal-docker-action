@@ -1,6 +1,7 @@
 import esbuild from 'rollup-plugin-esbuild'
 
 export default [
+  //
   {
     external: (id) => !/^[./]/.test(id),
     input: 'src/index.ts',
@@ -10,6 +11,7 @@ export default [
     },
     plugins: esbuild({ minify: true })
   },
+  //
   {
     external: (id) => !/^[./]/.test(id),
     input: 'src/scripts/index.ts',

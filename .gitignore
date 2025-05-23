@@ -147,5 +147,3 @@ out
 # bin/
 build/
 dist/
-lib/
-libs/
