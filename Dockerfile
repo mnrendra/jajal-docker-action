@@ -1,21 +1,29 @@
-# Container image that runs your code
-# FROM alpine@sha256:a8560b36e8b8210634f77d9f7f9efd7ffa463e380b75e2e74aff4511df3ef88c
 FROM node@sha256:ed0e340edf19b7014fd6b0a5f7048b73826b6ae6104132184243f9422b1e9957
 
-# Set noninteractive mode untuk apt
 ENV DEBIAN_FRONTEND=noninteractive
 
-#
-COPY bin/index.js /index.js
-COPY plugins/sign-tag/index.js /plugin-sign-tag.js
-COPY package.json /package.json
-COPY package-lock.json /package-lock.json
+COPY \
+  ./plugins/sign-tag/index.js \
+  ./@mnrendra/semantic-release-plugin-publish-github-action/index.js
 
-COPY setup.sh /setup.sh
+COPY \
+  ./dist/index.js \
+  ./index.js
 
-#
-RUN chmod +x /setup.sh
-RUN /setup.sh
+COPY \
+  ./clean-package.config.json \
+  ./package.json \
+  ./
+
+RUN \
+  apt-get update -qq >/dev/null && \
+  apt-get install -y --no-install-recommends -qq git gnupg >/dev/null && \
+  npx clean-package && \
+  npm install && \
+  npm cache clean --force && \
+  npm cache verify && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["/index.js"]
+ENTRYPOINT ["node", "./index.js"]

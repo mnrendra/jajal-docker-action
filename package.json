@@ -3,9 +3,8 @@
   "version": "3.0.0",
   "description": "Jajal docker action.",
   "private": false,
-  "bin": "bin/index.js",
   "scripts": {
-    "build": "rm -rf bin && npx rollup -c && chmod +x bin/*",
+    "build": "rm -rf dist && npx rollup -c && chmod +x dist/*",
     "commit": "npx cz",
     "security": "scorecard --local .",
     "test": "npm run build && npx jest --coverage"
@@ -31,7 +30,6 @@
     "openpgp": "^6.1.1"
   },
   "devDependencies": {
-    "@semantic-release/exec": "^7.1.0",
     "@types/addressparser": "^1.0.3",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.15.19",

@@ -6,7 +6,7 @@ export default [
     external: (id) => !/^[./]/.test(id),
     input: 'src/index.ts',
     output: {
-      file: 'bin/index.js',
+      file: 'dist/index.js',
       format: 'cjs'
     },
     plugins: esbuild({ minify: true })
