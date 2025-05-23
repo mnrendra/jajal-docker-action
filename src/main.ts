@@ -62,9 +62,9 @@ const main = async (): Promise<void> => {
   console.log('token:', token, '|', typeof token, '|', `"${env.INPUT_TOKEN}"`, '|', typeof env.INPUT_TOKEN)
 
   console.log(cwd())
-  const { stderr, stdout } = await execCmd('ls -laihs')
-  console.log('stderr:', stderr)
-  console.log('stdout:', stdout)
+  const ls = await execCmd('ls -laihs')
+  console.log('stderr:', ls.stderr)
+  console.log('stdout:', ls.stdout)
 
   if (privateKey !== undefined) {
     const outputs = await importGPG(privateKey, {
@@ -82,6 +82,12 @@ const main = async (): Promise<void> => {
 
     console.log('outputs:', outputs)
   }
+
+  await execCmd('echo "tes" >> tes.txt')
+  await execCmd('git add .')
+  await execCmd('git commit -S -m "chore: add tes file"')
+  await execCmd('git commit -s v4.0.0-tes -m "release: v4.0.0-tes"')
+  await execCmd('git push --follow-tags')
 }
 
 export default main
