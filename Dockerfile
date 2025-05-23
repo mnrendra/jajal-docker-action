@@ -27,7 +27,7 @@ RUN \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENV NODE_PATH=/action/node_modules
+# ENV NODE_PATH=/action/node_modules
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
 ENTRYPOINT ["node", "/action/index.js"]
