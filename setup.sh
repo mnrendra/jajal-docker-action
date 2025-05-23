@@ -2,9 +2,10 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-apt-get update
-apt-get upgrade -y
-apt-get install -y git gnupg ca-certificates
+# apt-get update
+# apt-get upgrade -y
+# apt-get install -y git gnupg ca-certificates
+
 # apt-get install -y --no-install-recommends git gnupg ca-certificates
 
 npm ci
