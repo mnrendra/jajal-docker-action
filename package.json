@@ -27,7 +27,8 @@
     "@actions/core": "^1.11.1",
     "addressparser": "^1.0.1",
     "nanoid": "^5.1.5",
-    "openpgp": "^6.1.1"
+    "openpgp": "^6.1.1",
+    "semantic-release": "^24.2.4"
   },
   "devDependencies": {
     "@types/addressparser": "^1.0.3",
@@ -44,7 +45,6 @@
     "rollup": "^4.41.0",
     "rollup-plugin-dts": "^6.2.1",
     "rollup-plugin-esbuild": "^6.2.1",
-    "semantic-release": "^24.2.4",
     "ts-jest": "^29.3.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
