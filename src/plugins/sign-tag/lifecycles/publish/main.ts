@@ -52,8 +52,6 @@ const main = async (
   const f = await execCmd(`git push origin ${tag}`)
   console.log('stderr:', f.stderr)
   console.log('stdout:', f.stdout)
-
-  console.log('coba---')
 }
 
 export default main
