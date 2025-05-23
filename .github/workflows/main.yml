@@ -34,7 +34,7 @@ jobs:
 
       # Hello world action step
       - name: Hello world action step
-        uses: mnrendra/jajal-docker-action@72d067621d55f825acf40c06056decbaf9b1ed30
+        uses: mnrendra/jajal-docker-action@08e4df66ef1dcf16a77f56e2b323c0052c54d699
         with:
           # git-author-name: ${{ vars.GIT_AUTHOR_NAME }}
           # git-author-email: ${{ vars.GIT_AUTHOR_EMAIL }}
