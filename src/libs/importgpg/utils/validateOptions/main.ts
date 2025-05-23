@@ -57,7 +57,7 @@ const validateOptions = (
 
   setStore({ ...store, verbose })
 
-  info('---------------- importGPG\'s options to use -------------:')
+  info('---------------- importGPG\'s options to use ---------------------')
   info(`workdir         : ${workdir}`)
   info(`passphrase      : ${passphrase}`)
   info(`fingerprint     : ${fingerprint}`)

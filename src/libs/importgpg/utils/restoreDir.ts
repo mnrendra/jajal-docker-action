@@ -10,7 +10,7 @@ const restoreDir = (): void => {
   const storedWorkdir = store.cwd
 
   if (currentWorkdir !== storedWorkdir) {
-    info('---------------- Restore working directory ---------------:')
+    info('---------------- Restore working directory -----------------------')
 
     chdir(storedWorkdir)
     info(`Restore working directory to ${storedWorkdir}.`)

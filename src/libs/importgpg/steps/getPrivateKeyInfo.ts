@@ -13,7 +13,7 @@ const getPrivateKeyInfo = async (
     creationTime
   } = await readPrivateKey(privateKey)
 
-  info('---------------- GPG private key info --------------------:')
+  info('---------------- GPG private key info ----------------------------')
   info(`Fingerprint     : ${digest}`)
   info(`KeyID           : ${id}`)
   info(`Name            : ${name}`)

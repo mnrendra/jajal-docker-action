@@ -14,7 +14,7 @@ const setTrustLevel = async (
     throw new Error('Invalid GPG Trust Level value', { cause: trustLevel })
   }
 
-  info('---------------- Setting key\'s trust level --------------:')
+  info('---------------- Setting key\'s trust level ----------------------')
   await setTrust(keyid, trustLevel)
   info(`Trust level set to ${trustLevel} for ${keyid}`)
 

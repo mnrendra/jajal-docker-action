@@ -46,7 +46,7 @@ const configGit = async (
     signPush
   }: Params
 ): Promise<Configs> => {
-  info('---------------- Configuring Git -------------------------:')
+  info('---------------- Configuring Git ---------------------------------')
 
   const gitConfigs: Configs = {
     scope: 'local',

@@ -89,7 +89,7 @@ export const importGPG = async (
 
     await setGPGTrustLevel(id, trustLevel)
 
-    success('---------------- Successfully set up GPG key -------------:')
+    success('---------------- Successfully set up GPG key ---------------------')
 
     const gitOptions = {
       scope: opt.gitScope,
@@ -101,7 +101,7 @@ export const importGPG = async (
 
     const gitConfigs = await configGit(id, name, email, gitOptions)
 
-    success('---------------- Successfully configured Git -------------:')
+    success('---------------- Successfully configured Git ---------------------')
 
     const outputs: Outputs = {
       ...gpg,
@@ -141,7 +141,7 @@ export const cleanupGPG = async (
   }
 
   try {
-    info('---------------- Cleaning up GPG key ---------------------:')
+    info('---------------- Cleaning up GPG key -----------------------------')
 
     info(`Removing key ${fingerprint}`)
     await deleteKey(fingerprint)
@@ -149,7 +149,7 @@ export const cleanupGPG = async (
     info('Killing GnuPG agent')
     await killAgent()
 
-    success('---------------- Successfully cleaned up GPG key ---------:')
+    success('---------------- Successfully cleaned up GPG key -----------------')
   } catch (error) {
     const warnMsg = error instanceof Error ? error.message : 'Unknown error'
     warn(warnMsg)

@@ -15,7 +15,7 @@ const setWorkdir = async (
   const workdirPath = resolve(workdir)
 
   if (currentWorkdir !== workdirPath) {
-    info('---------------- Change working directory ----------------:')
+    info('---------------- Change working directory ------------------------')
 
     chdir(workdirPath)
     info(`Using ${workdirPath} as working directory...`)

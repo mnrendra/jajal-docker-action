@@ -26,7 +26,7 @@ const getGPGInfo = async (): Promise<GPGInfo> => {
 
   const version = `${gpgInfo.gnupg} (libgcrypt ${gpgInfo.libgcrypt})`
 
-  info('---------------- GnuPG info ------------------------------:')
+  info('---------------- GnuPG info --------------------------------------')
   info(`Version         : ${version}`)
   info(`Libdir          : ${gpgInfo.libdir}`)
   info(`Libexecdir      : ${gpgInfo.libexecdir}`)

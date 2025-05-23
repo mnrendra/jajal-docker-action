@@ -4,7 +4,7 @@ const printFingerprint = (
   digest: string,
   fingerprint?: string
 ): void => {
-  info('---------------- Fingerprint to use ----------------------:')
+  info('---------------- Fingerprint to use ------------------------------')
   info(fingerprint ?? digest)
 }
 

@@ -27,11 +27,11 @@ const configGPGAgent = async (
   await configureAgent(gpgHome, GPG_AGENT_CONF)
   gpgAgentInfo.gpgHome = gpgHome
 
-  info('---------------- Configuring GnuPG agent -----------------:')
+  info('---------------- Configuring GnuPG agent -------------------------')
   info(`GnuPG home      : ${gpgHome}`)
 
   if (fingerprint !== undefined) {
-    info('---------------- Getting keygrip for fingerprint ---------:')
+    info('---------------- Getting keygrip for fingerprint -----------------')
 
     const keygrip = await getKeygrip(fingerprint)
 
@@ -41,7 +41,7 @@ const configGPGAgent = async (
 
     gpgAgentInfo.keygrips = [keygrip]
   } else {
-    info('---------------- Getting keygrips ------------------------:')
+    info('---------------- Getting keygrips --------------------------------')
 
     const keygrips = await getKeygrips(digest)
 
