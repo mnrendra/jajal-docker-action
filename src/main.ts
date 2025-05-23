@@ -25,7 +25,7 @@ const main = async (): Promise<void> => {
 
   // chdir(WORKSPACE_DIR)
 
-  // await execCmd(`git config --global --add safe.directory ${WORKSPACE_DIR}`)
+  await execCmd(`git config --global --add safe.directory ${cwd()}`)
 
   // const release = normalizeModule(semanticRelease)
 
