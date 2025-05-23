@@ -8,7 +8,9 @@ import normalizeModule from './normalizeModule'
 import parseStdoutLines from './parseStdoutLines'
 import restoreDir from './restoreDir'
 import spawnCmd from './spawnCmd'
+import success from './success'
 import validateOptions from './validateOptions'
+import warn from './warn'
 
 export {
   type Options,
@@ -20,5 +22,7 @@ export {
   parseStdoutLines,
   spawnCmd,
   restoreDir,
-  validateOptions
+  success,
+  validateOptions,
+  warn
 }

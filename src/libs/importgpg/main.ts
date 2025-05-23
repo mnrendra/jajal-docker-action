@@ -9,8 +9,12 @@ import {
 
 import {
   type Options,
+  debug,
+  info,
   restoreDir,
-  validateOptions
+  success,
+  validateOptions,
+  warn
 } from './utils'
 
 import {
@@ -85,6 +89,8 @@ export const importGPG = async (
 
     await setGPGTrustLevel(id, trustLevel)
 
+    success('---------------- Successfully set up GPG key -------------:')
+
     const gitOptions = {
       scope: opt.gitScope,
       signUser: opt.gitSignUser,
@@ -94,6 +100,8 @@ export const importGPG = async (
     }
 
     const gitConfigs = await configGit(id, name, email, gitOptions)
+
+    success('---------------- Successfully configured Git -------------:')
 
     const outputs: Outputs = {
       ...gpg,
@@ -128,19 +136,23 @@ export const cleanupGPG = async (
   fingerprint: string = ''
 ): Promise<void> => {
   if (fingerprint.length <= 0) {
-    console.log('Primary key fingerprint is not defined. Skipping cleanup.')
+    debug('Primary key fingerprint is not defined. Skipping cleanup.')
     return
   }
 
   try {
-    console.log(`Removing key ${fingerprint}`)
+    info('---------------- Cleaning up GPG key ---------------------:')
+
+    info(`Removing key ${fingerprint}`)
     await deleteKey(fingerprint)
 
-    console.log('Killing GnuPG agent')
+    info('Killing GnuPG agent')
     await killAgent()
+
+    success('---------------- Successfully cleaned up GPG key ---------:')
   } catch (error) {
     const warnMsg = error instanceof Error ? error.message : 'Unknown error'
-    console.warn('WARNING:', warnMsg)
-    console.warn(error)
+    warn(warnMsg)
+    warn(error)
   }
 }

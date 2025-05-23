@@ -1,11 +1,11 @@
 import { store } from '../store'
 
-const debug = (
+const success = (
   message: string
 ): void => {
   if (store.verbose) {
-    console.log(`\u001B[90m${message}\u001B[39m`)
+    console.log(`\u001B[32m${message}\u001B[39m`)
   }
 }
 
-export default debug
+export default success

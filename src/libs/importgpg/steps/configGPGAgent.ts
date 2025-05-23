@@ -27,7 +27,7 @@ const configGPGAgent = async (
   await configureAgent(gpgHome, GPG_AGENT_CONF)
   gpgAgentInfo.gpgHome = gpgHome
 
-  info('---------------- Configured GnuPG agent ------------------:')
+  info('---------------- Configuring GnuPG agent -----------------:')
   info(`GnuPG home      : ${gpgHome}`)
 
   if (fingerprint !== undefined) {
