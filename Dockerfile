@@ -33,9 +33,7 @@ RUN \
   ls -laihs ~ && \
   #
   echo "------- workdir directory ---------------" && \
-  #
-  # echo "------- consumer (/github/workspace) directory ---------------" && \
-  # ls -laihs /github/workspace && \
+  ls -laihs /@mnrendra/gha-publish-action && \
   #
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

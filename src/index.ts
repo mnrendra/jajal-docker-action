@@ -2,6 +2,8 @@
 
 import main from './main'
 
+console.log(process.cwd())
+
 main()
   .then((result) => {
     console.log('hasil:', result)
