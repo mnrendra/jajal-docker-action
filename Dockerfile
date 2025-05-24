@@ -16,7 +16,7 @@ COPY \
 
 RUN \
   ls -laihs && \
-  ls -laihs /action &&
+  ls -laihs /action && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
     ca-certificates \
