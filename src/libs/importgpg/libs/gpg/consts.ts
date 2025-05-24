@@ -1,9 +1,5 @@
 export const GPG_AGENT_CONF_FILE = 'gpg-agent.conf'
 
-export const GPG_AGENT_COMMAND = {
-  RELOADAGENT: 'RELOADAGENT'
-} as const
-
 export const GNUPG_EXT = '.gnupg'
 
 export const PLATFORM = {

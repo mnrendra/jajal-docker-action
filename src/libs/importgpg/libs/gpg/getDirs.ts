@@ -19,7 +19,9 @@ const parseLineDir = (
 }
 
 const getDirs = async (): Promise<Dirs> => {
-  const { stdout } = await execGpgconf(['--list-dirs'])
+  const args = ['--list-dirs']
+
+  const { stdout } = await execGpgconf(args)
 
   const lines = splitLines(stdout, true)
 

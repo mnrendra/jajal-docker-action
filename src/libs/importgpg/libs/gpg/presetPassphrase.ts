@@ -6,9 +6,9 @@ const presetPassphrase = async (
 ): Promise<string> => {
   const hexPassphrase = Buffer.from(passphrase, 'utf8').toString('hex').toUpperCase()
 
-  await gpgConnectAgent(`PRESET_PASSPHRASE ${keygrip} -1 ${hexPassphrase}`)
+  await gpgConnectAgent(['PRESET_PASSPHRASE', keygrip, '-1', hexPassphrase])
 
-  const keyinfo = await gpgConnectAgent(`KEYINFO ${keygrip}`)
+  const keyinfo = await gpgConnectAgent(['KEYINFO', keygrip])
 
   return keyinfo
 }

@@ -1,15 +1,22 @@
 import { execa } from 'execa'
 
-type ConnectAgentCommand =
-| 'RELOADAGENT'
-| `PRESET_PASSPHRASE ${string} -1 ${string}`
-| `KEYINFO ${string}`
-| 'KILLAGENT'
+type Args =
+| ['RELOADAGENT']
+| ['PRESET_PASSPHRASE', string, `${number}`, string]
+| ['KEYINFO', string]
+| ['KILLAGENT']
 
 const gpgConnectAgent = async (
-  command: ConnectAgentCommand
+  args: Args
 ): Promise<string> => {
-  const { stdout } = await execa('gpg-connect-agent', [`"${command}"`, '/bye'])
+  const command = args.shift()
+
+  const { stdout } = await execa('gpg-connect-agent', [
+    `"${command}"`,
+    ...args,
+    '/bye'
+  ])
+
   return stdout
 }
 
