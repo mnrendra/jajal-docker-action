@@ -15,8 +15,6 @@ COPY \
   .
 
 RUN \
-  ls -laihs && \
-  ls -laihs /action && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
     ca-certificates \
@@ -27,4 +25,4 @@ RUN \
   npm cache clean --force && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ~/.npm/_cacache
 
-ENTRYPOINT ["node", "/action/dist/index.js"]
+ENTRYPOINT ["node", "/action/index.js"]
