@@ -27,5 +27,6 @@ jobs:
         uses: mnrendra/jajal-docker-action@8e3c8817c629cb22c55ceba02bbe53a05e688f0d
         with:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-          gpg-passphrase: ${{ secrets.PASSPHRASE }}
+          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
+          gpg-fingerprint: ${{ secrets.GPG_FINGERPRINT }}
           gpg-trust-level: 1
