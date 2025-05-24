@@ -1,13 +1,10 @@
 const { execa } = require('execa')
-const { spawnCmd } = require('./src/libs/importgpg/utils')
 
 const main = async () => {
-  // const cp = await execa('./input.sh', { input: 'haiaiadsadas' })
-  // cp.stdin.end('renraaaaa')
-  // console.log(cp.stdout)
-
-  const sp = await spawnCmd(('./input.sh', { input: 'essss peeeee' }))
-  console.log(sp.stdout)
+  const abc = await execa('./susi.sh', ['susi', "abc def ghi", '/bye'])
+  // const abc = await execa`./susi.sh asu "abc def ghi" /bye`
+  console.log(abc.stderr)
+  console.log(abc.stdout)
 }
 
 main()

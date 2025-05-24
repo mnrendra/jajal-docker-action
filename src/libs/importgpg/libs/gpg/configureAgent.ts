@@ -13,7 +13,7 @@ const configureAgent = async (
 
   writeFileSync(gpgAgentConf, config)
 
-  await gpgConnectAgent(['RELOADAGENT'])
+  await gpgConnectAgent('RELOADAGENT')
 }
 
 export default configureAgent
