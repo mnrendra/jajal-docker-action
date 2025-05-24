@@ -28,4 +28,4 @@ jobs:
         with:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.PASSPHRASE }}
-          gpg-trust-level: 2
+          gpg-trust-level: 1
