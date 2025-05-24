@@ -15,14 +15,14 @@ COPY \
   .
 
 RUN \
-  apt-get update && \
-  apt-get install -y --no-install-recommends \
+  apt-get update -qq && \
+  apt-get install -y --no-install-recommends -qq \
     ca-certificates \
     git \
     gnupg \
   && \
   npm ci --production --silent && \
-  npm cache clean --force && \
+  npm cache clean --force --silent && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ~/.npm/_cacache
 
 ENTRYPOINT ["node", "/action/index.js"]
