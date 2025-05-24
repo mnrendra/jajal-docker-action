@@ -1,9 +1,9 @@
 import { resolve } from 'node:path'
 import { chdir, cwd } from 'node:process'
 
-import { store, setStore } from '../store'
+import { log } from '../../../libs/logger'
 
-import { info } from '../utils'
+import { store, setStore } from '../store'
 
 const setWorkdir = async (
   workdir: string
@@ -15,10 +15,10 @@ const setWorkdir = async (
   const workdirPath = resolve(workdir)
 
   if (currentWorkdir !== workdirPath) {
-    info('---------------- Change working directory ------------------------')
+    log('---------------- Change working directory ------------------------')
 
     chdir(workdirPath)
-    info(`Using ${workdirPath} as working directory...`)
+    log(`Using ${workdirPath} as working directory...`)
   }
 }
 

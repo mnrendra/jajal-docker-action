@@ -13,7 +13,7 @@ const plugins: ReadonlyArray<PluginSpec<any>> = [
   ['@semantic-release/commit-analyzer', { releaseRules }],
   '@semantic-release/release-notes-generator',
   ['@semantic-release/npm', { npmPublish: false }],
-  `${CONTAINER_WORKDIR}/@mnrendra/semantic-release-plugin-publish-github-action`,
+  `${CONTAINER_WORKDIR}/@mnrendra/semantic-release-plugin-github-action`,
   '@semantic-release/github'
 ]
 

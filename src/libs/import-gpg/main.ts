@@ -1,5 +1,7 @@
 import { cwd } from 'node:process'
 
+import { debug, log, success, warn } from '../../libs/logger'
+
 import {
   type PrivateKeyInfo,
   type TrustLevel,
@@ -9,12 +11,8 @@ import {
 
 import {
   type Options,
-  debug,
-  info,
   restoreDir,
-  success,
-  validateOptions,
-  warn
+  validateOptions
 } from './utils'
 
 import {
@@ -141,12 +139,12 @@ export const cleanupGPG = async (
   }
 
   try {
-    info('---------------- Cleaning up GPG key -----------------------------')
+    log('---------------- Cleaning up GPG key -----------------------------')
 
-    info(`Removing key ${fingerprint}`)
+    log(`Removing key ${fingerprint}`)
     await deleteKey(fingerprint)
 
-    info('Killing GnuPG agent')
+    log('Killing GnuPG agent')
     await killAgent()
 
     success('---------------- Successfully cleaned up GPG key -----------------')

@@ -7,7 +7,7 @@ import {
   presetPassphrase
 } from '../libs'
 
-import { debug, info } from '../utils'
+import { debug, log } from '../../../libs/logger'
 
 interface GPGAgentInfo {
   gpgHome: string
@@ -27,26 +27,26 @@ const configGPGAgent = async (
   await configureAgent(gpgHome, GPG_AGENT_CONF)
   gpgAgentInfo.gpgHome = gpgHome
 
-  info('---------------- Configuring GnuPG agent -------------------------')
-  info(`GnuPG home      : ${gpgHome}`)
+  log('---------------- Configuring GnuPG agent -------------------------')
+  log(`GnuPG home      : ${gpgHome}`)
 
   if (fingerprint !== undefined) {
-    info('---------------- Getting keygrip for fingerprint -----------------')
+    log('---------------- Getting keygrip for fingerprint -----------------')
 
     const keygrip = await getKeygrip(fingerprint)
 
-    info(`Presetting passphrase for key ${fingerprint} with keygrip ${keygrip}`)
+    log(`Presetting passphrase for key ${fingerprint} with keygrip ${keygrip}`)
     const keyinfo = await presetPassphrase(keygrip, passphrase)
     debug(keyinfo)
 
     gpgAgentInfo.keygrips = [keygrip]
   } else {
-    info('---------------- Getting keygrips --------------------------------')
+    log('---------------- Getting keygrips --------------------------------')
 
     const keygrips = await getKeygrips(digest)
 
     for (const keygrip of keygrips) {
-      info(`Presetting passphrase for ${keygrip}`)
+      log(`Presetting passphrase for ${keygrip}`)
       const keyinfo = await presetPassphrase(keygrip, passphrase)
       debug(keyinfo)
     }

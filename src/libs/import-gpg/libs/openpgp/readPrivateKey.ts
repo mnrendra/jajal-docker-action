@@ -1,7 +1,7 @@
 import { readKey } from 'openpgp'
 import addressparser from 'addressparser'
 
-import { normalizeModule } from '../../utils'
+import defaultModule from '../../../../libs/default-module'
 
 import getArmoredKey from './getArmoredKey'
 
@@ -26,7 +26,7 @@ const readPrivateKey = async (
 
   const id = key.getKeyID().toHex().toUpperCase()
 
-  const parser = normalizeModule(addressparser)
+  const parser = defaultModule(addressparser)
 
   const { name, address: email } = parser(user.userID?.userID ?? '')[0]
 

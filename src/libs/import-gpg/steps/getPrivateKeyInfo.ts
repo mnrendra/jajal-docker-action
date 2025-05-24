@@ -1,6 +1,6 @@
 import { type PrivateKeyInfo, readPrivateKey } from '../libs'
 
-import { info } from '../utils'
+import { log } from '../../../libs/logger'
 
 const getPrivateKeyInfo = async (
   privateKey: string
@@ -13,12 +13,12 @@ const getPrivateKeyInfo = async (
     creationTime
   } = await readPrivateKey(privateKey)
 
-  info('---------------- GPG private key info ----------------------------')
-  info(`Fingerprint     : ${digest}`)
-  info(`KeyID           : ${id}`)
-  info(`Name            : ${name}`)
-  info(`Email           : ${email}`)
-  info(`CreationTime    : ${creationTime.toUTCString()}`)
+  log('---------------- GPG private key info ----------------------------')
+  log(`Fingerprint     : ${digest}`)
+  log(`KeyID           : ${id}`)
+  log(`Name            : ${name}`)
+  log(`Email           : ${email}`)
+  log(`CreationTime    : ${creationTime.toUTCString()}`)
 
   return {
     digest,

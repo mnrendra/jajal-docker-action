@@ -5,8 +5,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /action
 
 COPY \
-plugins/sign-tag/index.js \
-@mnrendra/semantic-release-plugin-publish-github-action/index.js
+dist/semantic-release-plugin-github-action.js \
+@mnrendra/semantic-release-plugin-github-action/index.js
 
 COPY \
 package.json \

@@ -5,7 +5,7 @@ import {
   getVersion
 } from '../libs'
 
-import { info } from '../utils'
+import { log } from '../../../libs/logger'
 
 export interface GPGInfo extends Dirs, Version {
   version: string
@@ -26,12 +26,12 @@ const getGPGInfo = async (): Promise<GPGInfo> => {
 
   const version = `${gpgInfo.gnupg} (libgcrypt ${gpgInfo.libgcrypt})`
 
-  info('---------------- GnuPG info --------------------------------------')
-  info(`Version         : ${version}`)
-  info(`Libdir          : ${gpgInfo.libdir}`)
-  info(`Libexecdir      : ${gpgInfo.libexecdir}`)
-  info(`Datadir         : ${gpgInfo.datadir}`)
-  info(`Homedir         : ${gpgInfo.homedir}`)
+  log('---------------- GnuPG info --------------------------------------')
+  log(`Version         : ${version}`)
+  log(`Libdir          : ${gpgInfo.libdir}`)
+  log(`Libexecdir      : ${gpgInfo.libexecdir}`)
+  log(`Datadir         : ${gpgInfo.datadir}`)
+  log(`Homedir         : ${gpgInfo.homedir}`)
 
   return {
     ...gpgInfo,

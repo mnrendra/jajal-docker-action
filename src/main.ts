@@ -8,9 +8,10 @@ import { WORKDIR } from './consts'
 
 import config from './config'
 
-import { importGPG, cleanupGPG } from './libs'
+import defaultModule from './libs/default-module'
+import { importGPG, cleanupGPG } from './libs/import-gpg'
 
-import { getInputs, normalizeModule } from './utils'
+import { getInputs } from './utils'
 
 const main = async (): Promise<string> => {
   await execa('git', ['config', '--global', '--add', 'safe.directory', WORKDIR])
@@ -54,7 +55,7 @@ const main = async (): Promise<string> => {
     currentWorkdir = outputs.workdir
   }
 
-  const release = normalizeModule(semanticRelease)
+  const release = defaultModule(semanticRelease)
 
   const result = await release(config, {
     env: {

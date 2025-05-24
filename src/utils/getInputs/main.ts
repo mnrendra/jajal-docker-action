@@ -1,6 +1,6 @@
 import type {
-  ImportGPGOptions
-} from '../../libs'
+  Options
+} from './types'
 
 import {
   getFingerprint,
@@ -16,7 +16,7 @@ import {
   getWorkdir
 } from './utils'
 
-interface Inputs extends ImportGPGOptions {
+interface Inputs extends Options {
   workdir: string
   privateKey?: string
   token?: string

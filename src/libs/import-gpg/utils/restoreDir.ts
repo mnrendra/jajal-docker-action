@@ -1,8 +1,8 @@
 import { chdir, cwd } from 'node:process'
 
-import { store } from '../store'
+import { log } from '../../../libs/logger'
 
-import info from './info'
+import { store } from '../store'
 
 const restoreDir = (): void => {
   const currentWorkdir = cwd()
@@ -10,10 +10,10 @@ const restoreDir = (): void => {
   const storedWorkdir = store.cwd
 
   if (currentWorkdir !== storedWorkdir) {
-    info('---------------- Restore working directory -----------------------')
+    log('---------------- Restore working directory -----------------------')
 
     chdir(storedWorkdir)
-    info(`Restore working directory to ${storedWorkdir}.`)
+    log(`Restore working directory to ${storedWorkdir}.`)
   }
 }
 

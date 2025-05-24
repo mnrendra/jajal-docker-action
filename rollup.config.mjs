@@ -16,7 +16,7 @@ export default [
     external: (id) => !/^[./]/.test(id),
     input: 'src/plugins/sign-tag/index.ts',
     output: {
-      file: 'plugins/sign-tag/index.js',
+      file: 'dist/semantic-release-plugin-github-action.js',
       format: 'cjs'
     },
     plugins: esbuild({ minify: true })

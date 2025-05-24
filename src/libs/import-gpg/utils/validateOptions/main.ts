@@ -1,9 +1,9 @@
 import type { TrustLevel } from '../../libs'
 import type { GitConfigParams } from '../../steps'
 
-import { store, setStore } from '../../store'
+import { log } from '../../../logger'
 
-import info from '../info'
+import { store, setStore } from '../../store'
 
 import {
   validateFingerprint,
@@ -57,17 +57,17 @@ const validateOptions = (
 
   setStore({ ...store, verbose })
 
-  info('---------------- importGPG\'s options to use ---------------------')
-  info(`workdir         : ${workdir}`)
-  info(`passphrase      : ${passphrase}`)
-  info(`fingerprint     : ${fingerprint}`)
-  info(`trustLevel      : ${trustLevel}`)
-  info(`gitScope        : ${gitScope}`)
-  info(`gitSignUser     : ${gitSignUser}`)
-  info(`gitSignCommit   : ${gitSignCommit}`)
-  info(`gitSignTag      : ${gitSignTag}`)
-  info(`gitSignPush     : ${gitSignPush}`)
-  info(`verbose         : ${verbose}`)
+  log('---------------- importGPG\'s options to use ---------------------')
+  log(`workdir         : ${workdir}`)
+  log(`passphrase      : ${passphrase}`)
+  log(`fingerprint     : ${fingerprint}`)
+  log(`trustLevel      : ${trustLevel}`)
+  log(`gitScope        : ${gitScope}`)
+  log(`gitSignUser     : ${gitSignUser}`)
+  log(`gitSignCommit   : ${gitSignCommit}`)
+  log(`gitSignTag      : ${gitSignTag}`)
+  log(`gitSignPush     : ${gitSignPush}`)
+  log(`verbose         : ${verbose}`)
 
   return {
     workdir,

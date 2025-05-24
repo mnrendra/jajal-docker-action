@@ -1,6 +1,8 @@
-import { type TrustLevel, setTrust } from '../libs'
+import type { TrustLevel } from '../libs'
 
-import { info } from '../utils'
+import { log } from '../../../libs/logger'
+
+import { setTrust } from '../libs'
 
 const setTrustLevel = async (
   keyid: string,
@@ -14,9 +16,9 @@ const setTrustLevel = async (
     throw new Error('Invalid GPG Trust Level value', { cause: trustLevel })
   }
 
-  info('---------------- Setting key\'s trust level ----------------------')
+  log('---------------- Setting key\'s trust level ----------------------')
   await setTrust(keyid, trustLevel)
-  info(`Trust level set to ${trustLevel} for ${keyid}`)
+  log(`Trust level set to ${trustLevel} for ${keyid}`)
 
   return `Trust level set to ${trustLevel} for ${keyid}`
 }
