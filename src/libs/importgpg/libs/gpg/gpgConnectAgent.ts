@@ -1,7 +1,5 @@
 import { execa } from 'execa'
 
-// import { execCmd } from '../../utils'
-
 type Command =
 | 'RELOADAGENT'
 | `PRESET_PASSPHRASE ${string} ${number} ${string}`
@@ -11,11 +9,7 @@ type Command =
 const gpgConnectAgent = async (
   command: Command
 ): Promise<string> => {
-  console.log('sususu-execa-----', command)
-
   const { stdout } = await execa('gpg-connect-agent', [command, '/bye'])
-
-  // const { stdout } = await execCmd(`gpg-connect-agent "${command}" /bye`)
 
   return stdout
 }
