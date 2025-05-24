@@ -14,7 +14,7 @@ export default [
   //
   {
     external: (id) => !/^[./]/.test(id),
-    input: 'src/plugins/sign-tag/index.ts',
+    input: 'src/libs/semantic-release-plugin-github-action/index.ts',
     output: {
       file: 'dist/semantic-release-plugin-github-action.js',
       format: 'cjs'
