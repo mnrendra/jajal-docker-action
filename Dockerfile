@@ -5,16 +5,18 @@ ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /action
 
 COPY \
-  ./plugins/sign-tag/index.js \
-  ./@mnrendra/semantic-release-plugin-publish-github-action/index.js
+  plugins/sign-tag/index.js \
+  @mnrendra/semantic-release-plugin-publish-github-action/index.js
 
 COPY \
-  ./package.json \
-  ./package-lock.json \
-  ./dist/index.js \
-  ./
+  package.json \
+  package-lock.json \
+  dist/index.js \
+  .
 
 RUN \
+  ls -laihs && \
+  ls -laihs /action &&
   apt-get update && \
   apt-get install -y --no-install-recommends \
     ca-certificates \
