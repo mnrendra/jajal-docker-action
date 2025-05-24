@@ -14,10 +14,6 @@ const plugins: ReadonlyArray<PluginSpec<any>> = [
   '@semantic-release/release-notes-generator',
   ['@semantic-release/npm', { npmPublish: false }],
   `${CONTAINER_WORKDIR}/@mnrendra/semantic-release-plugin-publish-github-action`,
-  // ['@semantic-release/exec', {
-  //   /* eslint-disable-next-line no-template-curly-in-string */
-  //   publishCmd: './dist/script.js "${nextRelease.version}" "${nextRelease.notes}" "${branch.name}"'
-  // }],
   '@semantic-release/github'
 ]
 

@@ -1,5 +1,7 @@
 import { cwd, env } from 'node:process'
 
+import { execa } from 'execa'
+
 import semanticRelease from 'semantic-release'
 
 import { WORKDIR } from './consts'
@@ -8,10 +10,10 @@ import config from './config'
 
 import { importGPG, cleanupGPG } from './libs'
 
-import { execCmd, getInputs, normalizeModule } from './utils'
+import { getInputs, normalizeModule } from './utils'
 
 const main = async (): Promise<string> => {
-  await execCmd(`git config --global --add safe.directory ${WORKDIR}`)
+  await execa('git', ['config', '--global', '--add', 'safe.directory', WORKDIR])
 
   const {
     workdir,

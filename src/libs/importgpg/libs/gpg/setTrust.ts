@@ -1,4 +1,4 @@
-import spawnGpg from './spawnGpg'
+import execGpg from './execGpg'
 
 export type TrustLevel =
 | 1
@@ -22,7 +22,7 @@ const setTrustLevel = async (
 
   const input = Buffer.from(`trust\n${trust}\ny\nquit\n`)
 
-  await spawnGpg(args, { input })
+  await execGpg(args, { input })
 }
 
 export default setTrustLevel

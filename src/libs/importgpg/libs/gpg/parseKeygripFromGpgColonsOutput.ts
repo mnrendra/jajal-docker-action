@@ -1,4 +1,4 @@
-import { parseStdoutLines } from '../../utils'
+import { splitLines } from '../../utils'
 
 const parseKeygripFromGpgColonsOutput = (
   output: string,
@@ -7,7 +7,7 @@ const parseKeygripFromGpgColonsOutput = (
   let keygrip = ''
   let fingerPrintFound = false
 
-  const lines = parseStdoutLines(output)
+  const lines = splitLines(output, true)
 
   for (const line of lines) {
     if (line.startsWith('fpr:') && line.includes(`:${fingerprint}:`)) {

@@ -1,5 +1,7 @@
 import execGpg from './execGpg'
 
+import { splitLines } from '../../utils'
+
 const getKeygrips = async (
   fingerprint: string
 ): Promise<string[]> => {
@@ -11,11 +13,13 @@ const getKeygrips = async (
     fingerprint
   ]
 
-  const { stdoutLines } = await execGpg(args)
+  const { stdout } = await execGpg(args)
+
+  const lines = splitLines(stdout, true)
 
   const keygrips: string[] = []
 
-  stdoutLines.forEach((line) => {
+  lines.forEach((line) => {
     if (line.startsWith('grp')) {
       keygrips.push(line.replace(/(grp|:)/g, '').trim())
     }

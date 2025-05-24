@@ -1,21 +1,99 @@
-const chalk = (
-  message,
-  color,
-  close = '\u001B[39m'
-) => {
-  return message.split('\n').map((line) => {
-    line = color + line
+const splitLines = require('./splitLines')
 
-    line = line.endsWith('\r')
-      ? line.slice(0, -1) + close + '\r'
-      : line + close
+const a = '' +
+' N \n' +
+' R \r' +
+' RN \r\n' +
+' NR \n\r ' +
+' N \n' +
+' R \r' +
+' RN \r\n' +
+' NR \n\r ' +
+' N \n' +
+' R \r' +
+' RN \r\n' +
+' NR \n\r ' +
+' bonus '
 
-    return line
-  }).join('\n')
+const b = '' +
+' R \r' +
+' RN \r\n' +
+' NR \n\r ' +
+' N \n' +
+' R \r' +
+' RN \r\n' +
+' NR \n\r ' +
+' N \n' +
+' R \r' +
+' RN \r\n' +
+' NR \n\r ' +
+' N \n' +
+' bonus '
+
+const c = '' +
+' RN \r\n' +
+' NR \n\r ' +
+' N \n' +
+' R \r' +
+' RN \r\n' +
+' NR \n\r ' +
+' N \n' +
+' R \r' +
+' RN \r\n' +
+' NR \n\r ' +
+' N \n' +
+' R \r' +
+' bonus '
+
+const d = '' +
+' NR \n\r ' +
+' N \n' +
+' R \r' +
+' RN \r\n' +
+' NR \n\r ' +
+' N \n' +
+' R \r' +
+' RN \r\n' +
+' NR \n\r ' +
+' N \n' +
+' R \r' +
+' RN \r\n' +
+' bonus '
+
+const n = '' +
+' N \n' +
+' N \n' +
+' N \n' +
+' bonus '
+
+const r = '' +
+' R \r' +
+' R \r' +
+' R \r' +
+' bonus '
+
+const nr = '' +
+' NR \n\r' +
+' NR \n\r' +
+' NR \n\r' +
+' bonus '
+
+const rn = '' +
+' RN \r\n' +
+' RN \r\n' +
+' RN \r\n' +
+' bonus '
+
+const main = () => {
+  console.log(splitLines(a, true))
+  console.log(splitLines(b, true))
+  console.log(splitLines(c, true))
+  console.log(splitLines(d, true))
+
+  console.log(splitLines(n, true))
+  console.log(splitLines(r, true))
+  console.log(splitLines(nr, true))
+  console.log(splitLines(rn, true))
 }
 
-console.log(chalk('abc\ndef\r\nghi\njkl\r\nmno\rpqi\nrst', '\u001B[90m'))
-
-console.log('-------')
-
-console.log('\u001B[90m' + 'abc\ndef\r\nghi\njkl\r\nmno\rpqi\nrst' + '\u001B[39m')
+main()

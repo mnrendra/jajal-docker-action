@@ -1,5 +1,7 @@
 import execGpgconf from './execGpgconf'
 
+import { splitLines } from '../../utils'
+
 export interface Dirs {
   libdir: string
   libexecdir: string
@@ -17,7 +19,9 @@ const parseLineDir = (
 }
 
 const getDirs = async (): Promise<Dirs> => {
-  const { stdoutLines } = await execGpgconf(['--list-dirs'])
+  const { stdout } = await execGpgconf(['--list-dirs'])
+
+  const lines = splitLines(stdout, true)
 
   const dirs: Dirs = {
     libdir: '',
@@ -26,7 +30,7 @@ const getDirs = async (): Promise<Dirs> => {
     homedir: ''
   }
 
-  stdoutLines.forEach((line) => {
+  lines.forEach((line) => {
     Object.keys(dirs).forEach((key) => {
       const dir = key as Dir
 

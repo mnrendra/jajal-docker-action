@@ -1,9 +1,9 @@
-import { execCmd } from '../../utils'
+import { type Result, execa } from 'execa'
 
 const execGpgconf = async (
   args: string[] = []
-): ReturnType<typeof execCmd> => {
-  return await execCmd('gpgconf', args)
+): Promise<Result<Record<any, unknown>>> => {
+  return await execa('gpgconf', args)
 }
 
 export default execGpgconf

@@ -1,9 +1,9 @@
-import { execCmd } from '../../utils'
+import { type Result, execa } from 'execa'
 
 const execGit = async (
   args: string[] = []
-): ReturnType<typeof execCmd> => {
-  return await execCmd('git', args)
+): Promise<Result<Record<any, unknown>>> => {
+  return await execa('git', args)
 }
 
 export default execGit

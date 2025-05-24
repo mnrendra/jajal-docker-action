@@ -1,7 +1,13 @@
 const parseStdoutLines = (
   stdout: string
 ): string[] => {
-  return stdout.replace(/\r/g, '').trim().split(/\n/)
+  const stdoutLines = stdout
+    .trim()
+    .replace(/\r/g, '')
+    .trim()
+    .split(/\n/)
+
+  return stdoutLines
 }
 
 export default parseStdoutLines

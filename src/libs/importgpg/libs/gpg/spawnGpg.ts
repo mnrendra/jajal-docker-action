@@ -1,12 +1,14 @@
-import type { SpawnCmdOptions } from '../../utils'
+import { type Result, execa } from 'execa'
 
-import { spawnCmd } from '../../utils'
+interface Options {
+  input?: Buffer | string
+}
 
 const spawnGpg = async (
   args: string[] = [],
-  options: SpawnCmdOptions = {}
-): ReturnType<typeof spawnCmd> => {
-  return await spawnCmd('gpg', args, options)
+  options: Options = {}
+): Promise<Result<Record<any, unknown>>> => {
+  return await execa('gpg', args, options)
 }
 
 export default spawnGpg
