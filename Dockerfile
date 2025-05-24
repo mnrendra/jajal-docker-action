@@ -5,24 +5,24 @@ ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /action
 
 COPY \
-  "plugins/sign-tag/index.js" \
-  "@mnrendra/semantic-release-plugin-publish-github-action/index.js"
+  ./plugins/sign-tag/index.js \
+  ./@mnrendra/semantic-release-plugin-publish-github-action/index.js
 
 COPY \
-  "package.json" \
-  "package-lock.json" \
-  "dist/index.js" \
-  "."
+  ./package.json \
+  ./package-lock.json \
+  ./dist/index.js \
+  ./
 
 RUN \
-  apt-get update -qq >/dev/null 2>&1 && \
-  apt-get install -y --no-install-recommends -qq \
+  apt-get update && \
+  apt-get install -y --no-install-recommends \
     ca-certificates \
     git \
     gnupg \
-  >/dev/null 2>&1 && \
+  && \
   npm ci --production --silent && \
-  npm cache clean --force >/dev/null 2>&1 && \
+  npm cache clean --force && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ~/.npm/_cacache
 
 ENTRYPOINT ["node", "/action/dist/index.js"]
