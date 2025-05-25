@@ -1,6 +1,6 @@
 import { log } from '../../../libs/logger'
 
-import { getGitConfig, setGitConfig } from '../utils'
+import { getConfig, setConfig } from '../../../libs/git'
 
 export type Scope =
 | 'global'
@@ -62,34 +62,34 @@ const configGit = async (
   log(`scope           : ${gitConfigs.scope}`)
 
   if (signUser) {
-    await setGitConfig(USER_SIGNINGKEY, keyid, scope)
-    gitConfigs.userSigningkey = await getGitConfig(USER_SIGNINGKEY, scope)
+    await setConfig(USER_SIGNINGKEY, keyid, scope)
+    gitConfigs.userSigningkey = await getConfig(USER_SIGNINGKEY, scope)
     log(`user.signingkey : ${gitConfigs.userSigningkey}`)
 
-    await setGitConfig(USER_NAME, name, scope)
-    gitConfigs.userName = await getGitConfig(USER_NAME, scope)
+    await setConfig(USER_NAME, name, scope)
+    gitConfigs.userName = await getConfig(USER_NAME, scope)
     log(`user.name       : ${gitConfigs.userName}`)
 
-    await setGitConfig(USER_EMAIL, email, scope)
-    gitConfigs.userEmail = await getGitConfig(USER_EMAIL, scope)
+    await setConfig(USER_EMAIL, email, scope)
+    gitConfigs.userEmail = await getConfig(USER_EMAIL, scope)
     log(`user.email      : ${gitConfigs.userEmail}`)
   }
 
   if (signCommit) {
-    await setGitConfig(COMMIT_GPGSIGN, signCommit, scope)
-    gitConfigs.commitGpgsign = await getGitConfig(COMMIT_GPGSIGN, scope)
+    await setConfig(COMMIT_GPGSIGN, signCommit, scope)
+    gitConfigs.commitGpgsign = await getConfig(COMMIT_GPGSIGN, scope)
     log(`commit.gpgsign  : ${gitConfigs.commitGpgsign}`)
   }
 
   if (signTag) {
-    await setGitConfig(TAG_GPGSIGN, signTag, scope)
-    gitConfigs.tagGpgsign = await getGitConfig(TAG_GPGSIGN, scope)
+    await setConfig(TAG_GPGSIGN, signTag, scope)
+    gitConfigs.tagGpgsign = await getConfig(TAG_GPGSIGN, scope)
     log(`tag.gpgsign     : ${gitConfigs.tagGpgsign}`)
   }
 
   if (signPush !== false) {
-    await setGitConfig(PUSH_GPGSIGN, signPush, scope)
-    gitConfigs.pushGpgsign = await getGitConfig(PUSH_GPGSIGN, scope)
+    await setConfig(PUSH_GPGSIGN, signPush, scope)
+    gitConfigs.pushGpgsign = await getConfig(PUSH_GPGSIGN, scope)
     log(`push.gpgsign    : ${gitConfigs.pushGpgsign}`)
   }
 

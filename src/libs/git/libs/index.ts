@@ -1,4 +1,7 @@
-import type { Command, Result } from './git'
+import type {
+  Command,
+  Result
+} from './git'
 
 import type {
   GitConfig,
@@ -12,6 +15,9 @@ import config from './config'
 import git from './git'
 import push from './push'
 import tag from './tag'
+
+import getConfig from './getConfig'
+import setConfig from './setConfig'
 
 export type {
   Command,
@@ -27,5 +33,8 @@ export {
   config,
   git,
   push,
-  tag
+  tag,
+
+  getConfig,
+  setConfig
 }

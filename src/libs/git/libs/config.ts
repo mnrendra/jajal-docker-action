@@ -2,6 +2,7 @@ import git, { type Result } from './git'
 
 export interface GitConfig {
   'commit.gpgsign': boolean
+  'imap.port': number
   'push.gpgsign': boolean | 'if-asked'
   'tag.gpgsign': boolean
   'user.signingkey': string
@@ -11,6 +12,7 @@ export interface GitConfig {
 
 export type GitConfigKey =
 | 'commit.gpgsign'
+| 'imap.port'
 | 'push.gpgsign'
 | 'tag.gpgsign'
 | 'user.signingkey'
@@ -20,6 +22,7 @@ export type GitConfigKey =
 /* eslint-disable @typescript-eslint/indent */
 export type GitConfigValue<K extends GitConfigKey> =
 | K extends 'commit.gpgsign' ? GitConfig['commit.gpgsign'] : never
+| K extends 'imap.port' ? GitConfig['imap.port'] : never
 | K extends 'push.gpgsign' ? GitConfig['push.gpgsign'] : never
 | K extends 'tag.gpgsign' ? GitConfig['tag.gpgsign'] : never
 | K extends 'user.signingkey' ? GitConfig['user.signingkey'] : never
@@ -68,7 +71,7 @@ const getArgs = <K extends GitConfigKey>(
 
 const config = async <K extends GitConfigKey>(
   configKey: K,
-  options: Options<K> = {}
+  options: Options<K>
 ): Promise<Result> => {
   const args = getArgs<K>(configKey, options)
 
