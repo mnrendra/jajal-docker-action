@@ -15,38 +15,17 @@ import { getInputs } from './utils'
 const main = async (): Promise<string> => {
   await execa('git', ['config', '--global', '--add', 'safe.directory', WORKDIR])
 
-  const {
-    workdir,
-    privateKey,
-    passphrase,
-    fingerprint,
-    trustLevel,
-    gitScope,
-    gitSignUser,
-    gitSignCommit,
-    gitSignTag,
-    gitSignPush,
-    token
-  } = getInputs()
+  const inputs = getInputs()
 
   let digest = ''
   let name = 'GitOps Release'
   let email = 'gitops-release@users.noreply.github.com'
   let currentWorkdir = cwd()
 
+  const { privateKey, token } = inputs
+
   if (privateKey !== undefined) {
-    const outputs = await importGPG(privateKey, {
-      workdir,
-      passphrase,
-      fingerprint,
-      trustLevel,
-      gitScope,
-      gitSignUser,
-      gitSignCommit,
-      gitSignTag,
-      gitSignPush,
-      verbose: true
-    })
+    const outputs = await importGPG(privateKey, { ...inputs, verbose: true })
 
     digest = outputs.digest
     name = outputs.name
