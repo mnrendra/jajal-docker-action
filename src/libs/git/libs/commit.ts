@@ -20,7 +20,7 @@ const getArgs = (
     const flag = '-S'
 
     const arg = typeof keyid === 'string' && keyid !== ''
-      ? `${flag}"${keyid}"`
+      ? `${flag}${keyid}`
       : flag
 
     args.push(arg)
@@ -30,7 +30,7 @@ const getArgs = (
     args.push('--allow-empty')
   }
 
-  return [...args, '-m', `"${message}"`]
+  return [...args, '-m', `${message}`]
 }
 
 const commit = async (

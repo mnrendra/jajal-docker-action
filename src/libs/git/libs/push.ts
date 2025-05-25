@@ -21,7 +21,7 @@ const getArgs = (
   }
 
   if (signed !== false) {
-    args.push(`--signed="${signed}"`)
+    args.push(`--signed=${signed}`)
   }
 
   return args

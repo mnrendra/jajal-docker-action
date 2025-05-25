@@ -52,11 +52,11 @@ const getArgs = <K extends GitConfigKey>(
   const args: string[] = [`--${scope}`]
 
   if (value !== undefined && value !== null) {
-    args.push(`"${configKey}"`, `"${value.toString()}"`)
+    args.push(`${configKey}`, `${value.toString()}`)
   } else if (get) {
-    args.push('--get', `"${configKey}"`)
+    args.push('--get', `${configKey}`)
   } else if (unset) {
-    args.push('--unset', `"${configKey}"`)
+    args.push('--unset', `${configKey}`)
   } else if (list) {
     args.push('--list')
   }

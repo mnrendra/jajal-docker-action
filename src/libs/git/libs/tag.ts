@@ -26,7 +26,7 @@ const getArgs = (
 
   if (commit !== undefined) args.push(commit)
 
-  return [...args, '-m', `"${message}"`]
+  return [...args, '-m', `${message}`]
 }
 
 const tag = async (
