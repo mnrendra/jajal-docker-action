@@ -1,6 +1,6 @@
 import type { PluginSpec } from 'semantic-release'
 
-import { COMMIT_TYPES } from '../consts'
+import { COMMIT_TYPES } from './consts'
 
 const releaseRules = COMMIT_TYPES.map((type) => ({
   type,

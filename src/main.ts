@@ -6,10 +6,9 @@ import semanticRelease from 'semantic-release'
 
 import { WORKDIR } from './consts'
 
-import config from './config'
-
 import defaultModule from './libs/default-module'
 import { importGPG, cleanupGPG } from './libs/import-gpg'
+import config from './libs/semantic-release-config-github-action'
 
 import { getInputs } from './utils'
 
