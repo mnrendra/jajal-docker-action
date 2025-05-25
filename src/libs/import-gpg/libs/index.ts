@@ -1,9 +1,4 @@
 export {
-  getConfig as getGitConfig,
-  setConfig as setGitConfig
-} from './git'
-
-export {
   type Dirs,
   type TrustLevel,
   type Version,
