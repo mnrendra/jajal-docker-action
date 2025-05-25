@@ -4,6 +4,7 @@ export interface GitConfig {
   'commit.gpgsign': boolean
   'imap.port': number
   'push.gpgsign': boolean | 'if-asked'
+  'safe.directory': string
   'tag.gpgsign': boolean
   'user.signingkey': string
   'user.name': string
@@ -14,6 +15,7 @@ export type GitConfigKey =
 | 'commit.gpgsign'
 | 'imap.port'
 | 'push.gpgsign'
+| 'safe.directory'
 | 'tag.gpgsign'
 | 'user.signingkey'
 | 'user.name'
@@ -24,6 +26,7 @@ export type GitConfigValue<K extends GitConfigKey> =
 | K extends 'commit.gpgsign' ? GitConfig['commit.gpgsign'] : never
 | K extends 'imap.port' ? GitConfig['imap.port'] : never
 | K extends 'push.gpgsign' ? GitConfig['push.gpgsign'] : never
+| K extends 'safe.directory' ? GitConfig['safe.directory'] : never
 | K extends 'tag.gpgsign' ? GitConfig['tag.gpgsign'] : never
 | K extends 'user.signingkey' ? GitConfig['user.signingkey'] : never
 | K extends 'user.name' ? GitConfig['user.name'] : never

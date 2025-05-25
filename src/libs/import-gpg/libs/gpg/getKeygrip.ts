@@ -13,9 +13,9 @@ const getKeygrip = async (
     fingerprint
   ]
 
-  const { stdout } = await execGpg(args)
+  const { stdoutLines } = await execGpg(args)
 
-  const keygrip = parseKeygripFromGpgColonsOutput(stdout, fingerprint)
+  const keygrip = parseKeygripFromGpgColonsOutput(stdoutLines, fingerprint)
 
   return keygrip
 }

@@ -1,4 +1,4 @@
-import { type Result, execa } from 'execa'
+import { exec } from '../../helpers'
 
 interface Options {
   input?: Buffer | string
@@ -7,8 +7,9 @@ interface Options {
 const execGpg = async (
   args: string[] = [],
   options: Options = {}
-): Promise<Result<Record<any, unknown>>> => {
-  return await execa('gpg', args, options)
+): Promise<ReturnType<typeof exec>> => {
+  const result = await exec('gpg', args, options)
+  return result
 }
 
 export default execGpg

@@ -1,15 +1,11 @@
-import { splitLines } from '../../helpers'
-
 const parseKeygripFromGpgColonsOutput = (
-  output: string,
+  stdoutLines: string[],
   fingerprint: string
 ): string => {
   let keygrip = ''
   let fingerPrintFound = false
 
-  const lines = splitLines(output, true)
-
-  for (const line of lines) {
+  for (const line of stdoutLines) {
     if (line.startsWith('fpr:') && line.includes(`:${fingerprint}:`)) {
       fingerPrintFound = true
       continue

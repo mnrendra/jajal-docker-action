@@ -1,4 +1,4 @@
-import { execa } from 'execa'
+import { exec } from '../../helpers'
 
 type Command =
 | 'RELOADAGENT'
@@ -9,7 +9,7 @@ type Command =
 const gpgConnectAgent = async (
   command: Command
 ): Promise<string> => {
-  const { stdout } = await execa('gpg-connect-agent', [command, '/bye'])
+  const { stdout } = await exec('gpg-connect-agent', [command, '/bye'])
 
   return stdout
 }

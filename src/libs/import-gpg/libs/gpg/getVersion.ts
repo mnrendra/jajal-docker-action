@@ -1,7 +1,5 @@
 import execGpg from './execGpg'
 
-import { splitLines } from '../../helpers'
-
 export interface Version {
   gnupg: string
   libgcrypt: string
@@ -24,16 +22,14 @@ const parseLineVersion = (
 const getVersion = async (): Promise<Version> => {
   const args = ['--version']
 
-  const { stdout } = await execGpg(args)
-
-  const lines = splitLines(stdout, true)
+  const { stdoutLines } = await execGpg(args)
 
   const version: Version = {
     gnupg: '',
     libgcrypt: ''
   }
 
-  lines.forEach((line) => {
+  stdoutLines.forEach((line) => {
     if (line.startsWith('gpg (GnuPG) ')) {
       version.gnupg = parseLineVersion(line, 'gpg (GnuPG)')
     } else if (line.startsWith('gpg (GnuPG/MacGPG2) ')) {

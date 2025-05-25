@@ -1,19 +1,19 @@
 import { cwd, env } from 'node:process'
 
-import { execa } from 'execa'
-
 import semanticRelease from 'semantic-release'
 
 import { WORKDIR } from './consts'
 
 import defaultModule from './libs/default-module'
+import git from './libs/git'
 import { importGPG, cleanupGPG } from './libs/import-gpg'
 import config from './libs/semantic-release-config-github-action'
 
 import { getInputs } from './utils'
 
 const main = async (): Promise<string> => {
-  await execa('git', ['config', '--global', '--add', 'safe.directory', WORKDIR])
+  // await execa('git', ['config', '--global', '--add', 'safe.directory', WORKDIR])
+  await git.setConfig('safe.directory', WORKDIR)
 
   const inputs = getInputs()
 

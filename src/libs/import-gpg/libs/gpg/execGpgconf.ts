@@ -1,9 +1,10 @@
-import { type Result, execa } from 'execa'
+import { exec } from '../../helpers'
 
 const execGpgconf = async (
   args: string[] = []
-): Promise<Result<Record<any, unknown>>> => {
-  return await execa('gpgconf', args)
+): Promise<ReturnType<typeof exec>> => {
+  const result = await exec('gpgconf', args)
+  return result
 }
 
 export default execGpgconf
