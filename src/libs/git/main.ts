@@ -2,6 +2,7 @@ import type { Command, Result } from './libs'
 
 import {
   commit,
+  config,
   git,
   push,
   tag
@@ -20,6 +21,7 @@ const setPropertyDescriptor = (
 
 Object.defineProperties(main, {
   commit: setPropertyDescriptor(commit),
+  config: setPropertyDescriptor(config),
   tag: setPropertyDescriptor(tag),
   push: setPropertyDescriptor(push)
 })
@@ -27,6 +29,7 @@ Object.defineProperties(main, {
 export interface Git {
   (command: Command, args: string[]): Promise<Result>
   commit: typeof commit
+  config: typeof config
   tag: typeof tag
   push: typeof push
 }

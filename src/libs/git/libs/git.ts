@@ -8,6 +8,7 @@ export type Command =
 | 'commit'
 | 'push'
 | 'tag'
+| 'config'
 
 const git = async (
   command: Command,
