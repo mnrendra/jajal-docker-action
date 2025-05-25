@@ -1,6 +1,6 @@
 import execGpgconf from './execGpgconf'
 
-import { splitLines } from '../../utils'
+import { splitLines } from '../../helpers'
 
 export interface Dirs {
   libdir: string

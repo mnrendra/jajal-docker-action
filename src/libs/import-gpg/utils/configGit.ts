@@ -2,29 +2,29 @@ import { log } from '../../../libs/logger'
 
 import { getConfig, setConfig } from '../../../libs/git'
 
-export type Scope =
+export type GitConfigScope =
 | 'global'
 | 'local'
 
-export type PushGpgsign =
+export type GitPushGpgsign =
 | boolean
 | 'if-asked'
 
-export interface Configs {
-  scope: Scope
+export interface GitConfigs {
+  scope: GitConfigScope
   userSigningkey: string
   commitGpgsign: boolean
   tagGpgsign: boolean
-  pushGpgsign: PushGpgsign
+  pushGpgsign: GitPushGpgsign
   userName: string
   userEmail: string
 }
 
-export interface Params extends Pick<Configs, 'scope'> {
+export interface GitConfigParams extends Pick<GitConfigs, 'scope'> {
   signUser: boolean
   signCommit: boolean
   signTag: boolean
-  signPush: PushGpgsign
+  signPush: GitPushGpgsign
 }
 
 const USER_SIGNINGKEY = 'user.signingkey'
@@ -44,11 +44,11 @@ const configGit = async (
     signCommit,
     signTag,
     signPush
-  }: Params
-): Promise<Configs> => {
+  }: GitConfigParams
+): Promise<GitConfigs> => {
   log('---------------- Configuring Git ---------------------------------')
 
-  const gitConfigs: Configs = {
+  const gitConfigs: GitConfigs = {
     scope: 'local',
     userSigningkey: '',
     commitGpgsign: false,

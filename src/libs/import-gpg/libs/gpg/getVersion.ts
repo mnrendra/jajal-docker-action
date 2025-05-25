@@ -1,6 +1,6 @@
 import execGpg from './execGpg'
 
-import { splitLines } from '../../utils'
+import { splitLines } from '../../helpers'
 
 export interface Version {
   gnupg: string

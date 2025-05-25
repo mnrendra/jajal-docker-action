@@ -1,6 +1,6 @@
 import execGpg from './execGpg'
 
-import { splitLines } from '../../utils'
+import { splitLines } from '../../helpers'
 
 const getKeygrips = async (
   fingerprint: string

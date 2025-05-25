@@ -10,24 +10,21 @@ import {
 } from './libs'
 
 import {
-  type Options,
-  restoreDir,
-  validateOptions
-} from './utils'
-
-import {
-  type GitScope,
+  type GitConfigScope,
   type GitPushGpgsign,
   type GPGInfo,
+  type Options,
   configGit,
   configGPGAgent,
   getGPGInfo,
   getPrivateKeyInfo,
   importGPGKey,
   printFingerprint,
+  restoreDir,
   setGPGTrustLevel,
-  setWorkdir
-} from './steps'
+  setWorkdir,
+  validateOptions
+} from './utils'
 
 export type {
   Options
@@ -48,7 +45,7 @@ export interface Outputs extends
   // SetTrustLevel
   trustLevel?: TrustLevel
   // ConfigureGit
-  gitConfigScope: GitScope
+  gitConfigScope: GitConfigScope
   gitUserSigningkey: string
   gitCommitGpgsign: boolean
   gitTagGpgsign: boolean

@@ -1,4 +1,4 @@
-import { splitLines } from '../../utils'
+import { splitLines } from '../../helpers'
 
 const parseKeygripFromGpgColonsOutput = (
   output: string,
