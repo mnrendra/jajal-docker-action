@@ -12,7 +12,6 @@ import config from './libs/semantic-release-config-github-action'
 import { getInputs } from './utils'
 
 const main = async (): Promise<string> => {
-  // await execa('git', ['config', '--global', '--add', 'safe.directory', WORKDIR])
   await git.setConfig('safe.directory', WORKDIR, 'global')
 
   const inputs = getInputs()

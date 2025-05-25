@@ -1,8 +1,8 @@
-import type { TrustLevel } from '../libs'
+import type { TrustLevel } from '../libs/gpg'
 
 import { log } from '../../../libs/logger'
 
-import { setTrust } from '../libs'
+import { setTrust } from '../libs/gpg'
 
 const setTrustLevel = async (
   keyid: string,

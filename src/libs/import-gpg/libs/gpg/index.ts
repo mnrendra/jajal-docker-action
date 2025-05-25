@@ -13,10 +13,29 @@ import parseKeygripFromGpgColonsOutput from './parseKeygripFromGpgColonsOutput'
 import presetPassphrase from './presetPassphrase'
 import setTrust, { type TrustLevel } from './setTrust'
 
+export type {
+  Dirs,
+  TrustLevel,
+  Version
+}
+
 export {
-  type Dirs,
-  type TrustLevel,
-  type Version,
+  GPG_AGENT_CONF,
+  configureAgent,
+  deleteKey,
+  getDirs,
+  getHome,
+  getKeygrip,
+  getKeygrips,
+  getVersion,
+  importKey,
+  killAgent,
+  parseKeygripFromGpgColonsOutput,
+  presetPassphrase,
+  setTrust
+}
+
+export default {
   GPG_AGENT_CONF,
   configureAgent,
   deleteKey,

@@ -1,13 +1,11 @@
+import type { TrustLevel } from './libs/gpg'
+import type { PrivateKeyInfo } from './libs/openpgp'
+
 import { cwd } from 'node:process'
 
 import { debug, log, success, warn } from '../../libs/logger'
 
-import {
-  type PrivateKeyInfo,
-  type TrustLevel,
-  deleteKey,
-  killAgent
-} from './libs'
+import gpg from './libs/gpg'
 
 import {
   type GitConfigScope,
@@ -139,10 +137,10 @@ export const cleanupGPG = async (
     log('---------------- Cleaning up GPG key -----------------------------')
 
     log(`Removing key ${fingerprint}`)
-    await deleteKey(fingerprint)
+    await gpg.deleteKey(fingerprint)
 
     log('Killing GnuPG agent')
-    await killAgent()
+    await gpg.killAgent()
 
     success('---------------- Successfully cleaned up GPG key -----------------')
   } catch (error) {

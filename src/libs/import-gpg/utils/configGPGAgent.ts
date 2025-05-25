@@ -5,7 +5,7 @@ import {
   getKeygrip,
   getKeygrips,
   presetPassphrase
-} from '../libs'
+} from '../libs/gpg'
 
 import { debug, log } from '../../../libs/logger'
 

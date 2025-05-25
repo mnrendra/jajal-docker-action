@@ -1,4 +1,4 @@
-import type { TrustLevel } from '../libs'
+import type { TrustLevel } from '../libs/gpg'
 
 import type { GitConfigParams, GitConfigScope, GitPushGpgsign } from './configGit'
 

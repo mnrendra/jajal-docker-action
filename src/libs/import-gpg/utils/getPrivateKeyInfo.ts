@@ -1,4 +1,4 @@
-import { type PrivateKeyInfo, readPrivateKey } from '../libs'
+import { type PrivateKeyInfo, readPrivateKey } from '../libs/openpgp'
 
 import { log } from '../../../libs/logger'
 

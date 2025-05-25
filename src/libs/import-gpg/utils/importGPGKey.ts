@@ -1,6 +1,6 @@
 import { log } from '../../../libs/logger'
 
-import { importKey } from '../libs'
+import { importKey } from '../libs/gpg'
 
 const importGPGKey = async (
   gpgPrivateKey: string,

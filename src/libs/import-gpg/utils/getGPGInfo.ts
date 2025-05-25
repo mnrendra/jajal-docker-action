@@ -3,7 +3,7 @@ import {
   type Version,
   getDirs,
   getVersion
-} from '../libs'
+} from '../libs/gpg'
 
 import { log } from '../../../libs/logger'
 
