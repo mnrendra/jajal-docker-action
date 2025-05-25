@@ -28,5 +28,5 @@ jobs:
         with:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
-          gpg-fingerprint: ${{ secrets.GPG_FINGERPRINT }}
+          # gpg-fingerprint: ${{ secrets.GPG_FINGERPRINT }}
           gpg-trust-level: 1
