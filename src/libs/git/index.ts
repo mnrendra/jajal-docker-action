@@ -1,8 +1,8 @@
-import main, { type Git } from './main'
+import main from './main'
 
 export type * from './libs'
 
-export type { Git }
+export type { Git } from './main'
 
 export * from './libs'
 

@@ -17,13 +17,15 @@ export type GitConfigKey =
 | 'user.name'
 | 'user.email'
 
+/* eslint-disable @typescript-eslint/indent */
 export type GitConfigValue<K extends GitConfigKey> =
 | K extends 'commit.gpgsign' ? GitConfig['commit.gpgsign'] : never
 | K extends 'push.gpgsign' ? GitConfig['push.gpgsign'] : never
-| K extends 'tag.gpgsign' ? GitConfig['tag.gpgsign'] : never /* eslint-disable-line @typescript-eslint/indent */
-| K extends 'user.signingkey' ? GitConfig['user.signingkey'] : never /* eslint-disable-line @typescript-eslint/indent */
-| K extends 'user.name' ? GitConfig['user.name'] : never /* eslint-disable-line @typescript-eslint/indent */
-| K extends 'user.email' ? GitConfig['user.email'] : never /* eslint-disable-line @typescript-eslint/indent */
+| K extends 'tag.gpgsign' ? GitConfig['tag.gpgsign'] : never
+| K extends 'user.signingkey' ? GitConfig['user.signingkey'] : never
+| K extends 'user.name' ? GitConfig['user.name'] : never
+| K extends 'user.email' ? GitConfig['user.email'] : never
+/* eslint-enable @typescript-eslint/indent */
 
 export type GitConfigScope =
 | 'global'

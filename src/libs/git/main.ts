@@ -1,5 +1,3 @@
-import type { Command, Result } from './libs'
-
 import {
   commit,
   config,
@@ -8,30 +6,22 @@ import {
   tag
 } from './libs'
 
-const main = git
+import { defineProperties } from './utils'
 
-const setPropertyDescriptor = (
-  value: (...args: any) => any
-): PropertyDescriptor => ({
-  value,
-  enumerable: true,
-  configurable: false,
-  writable: false
+defineProperties(git, {
+  commit,
+  config,
+  tag,
+  push
 })
 
-Object.defineProperties(main, {
-  commit: setPropertyDescriptor(commit),
-  config: setPropertyDescriptor(config),
-  tag: setPropertyDescriptor(tag),
-  push: setPropertyDescriptor(push)
-})
+type GitFn = typeof git
 
-export interface Git {
-  (command: Command, args: string[]): Promise<Result>
+export interface Git extends GitFn {
   commit: typeof commit
   config: typeof config
   tag: typeof tag
   push: typeof push
 }
 
-export default main as Git
+export default git as Git
