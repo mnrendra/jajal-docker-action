@@ -1,11 +1,11 @@
 import {
   commit,
   config,
+  getConfig,
+  setConfig,
   git,
   push,
-  tag,
-  getConfig,
-  setConfig
+  tag
 } from './libs'
 
 import { defineProperties } from './utils'
@@ -13,10 +13,10 @@ import { defineProperties } from './utils'
 defineProperties(git, {
   commit,
   config,
-  tag,
-  push,
   getConfig,
-  setConfig
+  setConfig,
+  push,
+  tag
 })
 
 type GitFn = typeof git
@@ -24,10 +24,10 @@ type GitFn = typeof git
 export interface Git extends GitFn {
   commit: typeof commit
   config: typeof config
-  tag: typeof tag
-  push: typeof push
   getConfig: typeof getConfig
   setConfig: typeof setConfig
+  push: typeof push
+  tag: typeof tag
 }
 
 export default git as Git

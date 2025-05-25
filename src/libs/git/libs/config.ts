@@ -80,4 +80,35 @@ const config = async <K extends GitConfigKey>(
   return result
 }
 
+export const getConfig = async <K extends GitConfigKey>(
+  gitConfigKey: K,
+  gitConfigScope: GitConfigScope = 'local'
+): Promise<GitConfigValue<K>> => {
+  const { stdout } = await config(gitConfigKey, {
+    get: true,
+    scope: gitConfigScope
+  })
+
+  if (stdout === 'false') return false as GitConfigValue<K>
+  if (stdout === 'true') return true as GitConfigValue<K>
+
+  const num = Number(stdout)
+  if (!Number.isNaN(num)) return num as GitConfigValue<K>
+
+  return stdout as GitConfigValue<K>
+}
+
+export const setConfig = async <K extends GitConfigKey>(
+  gitConfigKey: K,
+  gitConfigValue: GitConfigValue<K>,
+  gitConfigScope: GitConfigScope = 'local'
+): Promise<Result> => {
+  const result = await config(gitConfigKey, {
+    scope: gitConfigScope,
+    value: gitConfigValue
+  })
+
+  return result
+}
+
 export default config
