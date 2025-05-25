@@ -1,19 +1,32 @@
 import type { PluginSpec } from 'semantic-release'
 
-import { COMMIT_TYPES } from './consts'
+const CONTAINER_WORKDIR = '/action'
+
+const COMMIT_TYPES = [
+  'docs',
+  'style',
+  'refactor',
+  'perf',
+  'test',
+  'build',
+  'ci',
+  'chore',
+  'revert'
+] as const
 
 const releaseRules = COMMIT_TYPES.map((type) => ({
   type,
   release: 'patch'
 } as const))
 
-const CONTAINER_WORKDIR = '/action'
-
 const plugins: ReadonlyArray<PluginSpec<any>> = [
   ['@semantic-release/commit-analyzer', { releaseRules }],
   '@semantic-release/release-notes-generator',
   ['@semantic-release/npm', { npmPublish: false }],
-  `${CONTAINER_WORKDIR}/@mnrendra/semantic-release-plugin-github-action`,
+  [`${CONTAINER_WORKDIR}/@mnrendra/semantic-release-plugin-github-action`, {
+    signCommit: true,
+    signTag: true
+  }],
   '@semantic-release/github'
 ]
 

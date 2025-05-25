@@ -1,6 +1,10 @@
 import type { BranchSpec } from 'semantic-release'
 
-import { PRERELEASE_BRANCHES } from './consts'
+const PRERELEASE_BRANCHES = [
+  'alpha',
+  'beta',
+  'rc'
+] as const
 
 const prereleaseBranches = PRERELEASE_BRANCHES.map((name) => ({
   name,
