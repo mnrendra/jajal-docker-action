@@ -11,6 +11,5 @@ src/
 .gitignore*
 .pre-commit-config*
 jest*
-# package*
 rollup*
 tsconfig*
