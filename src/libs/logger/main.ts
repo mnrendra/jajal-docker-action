@@ -1,3 +1,5 @@
+import { defineProperties } from './utils'
+
 type Code =
 | 31
 | 32
@@ -88,3 +90,34 @@ export const trace = (message: string): void => {
 export const log = (message: string): void => {
   console.log(message)
 }
+
+const main = (
+  ...args: string[]
+): void => {
+  console.log(...args)
+}
+
+defineProperties(main, {
+  fatal,
+  error,
+  warn,
+  info,
+  success,
+  debug,
+  trace,
+  log
+})
+
+export interface Logger {
+  (...args: string[]): void
+  fatal: typeof fatal
+  error: typeof error
+  warn: typeof warn
+  info: typeof info
+  success: typeof success
+  debug: typeof debug
+  trace: typeof trace
+  log: typeof log
+}
+
+export const logger = main as Logger
