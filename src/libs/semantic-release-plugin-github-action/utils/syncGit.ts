@@ -1,4 +1,5 @@
-import git from '../../git'
+import git from '../../../libs/git'
+import { logger } from '../../../libs/logger'
 
 interface Params {
   branch: string
@@ -19,8 +20,13 @@ const syncGit = async (
 ): Promise<void> => {
   await git.add('.')
 
+  console.log('removeContents:', removeContents)
+  console.log('addContents:', addContents)
+
   for (const removeContent of removeContents) {
+    console.log('removeContent:', removeContent)
     if (!addContents.includes(removeContent)) {
+      console.log('----------removeContent:', removeContent)
       await git.rm(removeContent, {
         force: true,
         cached: true,
@@ -32,8 +38,18 @@ const syncGit = async (
   }
 
   for (const addContent of addContents) {
+    console.log('addContent:', addContent)
     if (!removeContents.includes(addContent)) {
-      await git.add(addContent, { force: true })
+      console.log('----------addContent:', addContent)
+      try {
+        await git.add(addContent, { force: true })
+      } catch (error) {
+        const message = error instanceof Error
+          ? error.message
+          : `Uknown error from: ${error as any}`
+
+        logger.warn(message)
+      }
     }
   }
 
