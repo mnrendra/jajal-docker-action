@@ -29,7 +29,10 @@ const prepareGitIgnore = (
 
   if (backupedFile !== undefined) {
     ignore.backupFile = backupedFile
-    ignore.gitIgnores = parseIgnore(backupedFile)
+
+    const gitIgnore = readFileSync(backupedFile, 'utf8')
+    ignore.gitIgnores = parseIgnore(gitIgnore)
+
     rmSync(GIT_IGNORE, { force: true })
   }
 
