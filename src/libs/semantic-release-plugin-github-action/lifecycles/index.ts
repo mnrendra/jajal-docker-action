@@ -29,6 +29,11 @@ const analyzeCommits = async (opt = {}, ctx: any = {}): Promise<void> => {
 
 const verifyRelease = async (opt = {}, ctx: any = {}): Promise<void> => {
   await print('verifyRelease', ctx)
+  const tagName: string = ctx?.nextRelease?.gitTag ?? 'coba-coba'
+  console.log('----------VERIFY RELEASE----------', tagName)
+  await git.tag(tagName, { sign: true, message: `dari verifyRelease ${tagName} !` })
+  await git.push(tagName)
+  await print('verifyRelease', ctx)
 }
 
 const generateNotes = async (opt = {}, ctx: any = {}): Promise<void> => {
@@ -40,11 +45,6 @@ const addChannel = async (opt = {}, ctx: any = {}): Promise<void> => {
 }
 
 const prepare = async (opt = {}, ctx: any = {}): Promise<void> => {
-  await print('prepare', ctx)
-  const tagName: string = ctx?.nextRelease?.gitTag ?? 'coba-coba'
-  console.log('----------PREPARE----------', tagName)
-  await git.tag(tagName, { sign: true, message: `dari PREPARE ${tagName} !` })
-  await git.push(tagName)
   await print('prepare', ctx)
 }
 
