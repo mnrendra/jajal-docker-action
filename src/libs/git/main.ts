@@ -4,6 +4,7 @@ import {
   getConfig,
   setConfig,
   git,
+  lsRemote,
   push,
   tag
 } from './libs'
@@ -15,6 +16,7 @@ defineProperties(git, {
   config,
   getConfig,
   setConfig,
+  lsRemote,
   push,
   tag
 })
@@ -26,6 +28,7 @@ export interface Git extends GitFn {
   config: typeof config
   getConfig: typeof getConfig
   setConfig: typeof setConfig
+  lsRemote: typeof lsRemote
   push: typeof push
   tag: typeof tag
 }

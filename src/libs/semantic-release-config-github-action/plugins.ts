@@ -32,13 +32,7 @@ const plugins: ReadonlyArray<PluginSpec<any>> = [
     tag: {
       message: 'release: v{nextRelease.version}\n\n{nextRelease.notes}',
       sign: true
-    } //,
-
-    // allowEmptyCommit: true,
-    // commitMessage: 'release: from plugin v{nextRelease.version}\n\n{nextRelease.notes}',
-    // signCommit: true,
-    // signTag: true,
-    // tagMessage: 'release: from plugin v{nextRelease.version}\n\n{nextRelease.notes}'
+    }
   }],
   '@semantic-release/github'
 ]

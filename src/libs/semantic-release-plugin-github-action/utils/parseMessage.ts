@@ -1,19 +1,27 @@
 import type {
-  AddChannelContext,
+  VerifyConditionsContext,
+  AnalyzeCommitsContext,
+  VerifyReleaseContext,
   GenerateNotesContext,
+  AddChannelContext,
   PrepareContext,
   PublishContext,
-  SuccessContext
+  SuccessContext,
+  FailContext
 } from 'semantic-release'
 
 import getNested from './getNested'
 
 type Context =
-| AddChannelContext
+| VerifyConditionsContext
+| AnalyzeCommitsContext
+| VerifyReleaseContext
 | GenerateNotesContext
+| AddChannelContext
 | PrepareContext
 | PublishContext
 | SuccessContext
+| FailContext
 
 const parseMessage = (
   context: Context,

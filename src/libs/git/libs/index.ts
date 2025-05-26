@@ -1,6 +1,7 @@
 import commit from './commit'
 import config, { getConfig, setConfig } from './config'
 import git from './git'
+import lsRemote from './lsRemote'
 import push from './push'
 import tag from './tag'
 
@@ -22,6 +23,7 @@ export {
   getConfig,
   setConfig,
   git,
+  lsRemote,
   push,
   tag
 }

@@ -6,9 +6,10 @@ export type Result = ExecaResult<Record<any, unknown>>
 
 export type Command =
 | 'commit'
+| 'config'
+| 'ls-remote'
 | 'push'
 | 'tag'
-| 'config'
 
 const git = async (
   command: Command,
