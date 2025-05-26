@@ -1,3 +1,5 @@
+name: Madang
+
 on:
   push:
     branches:
@@ -8,11 +10,14 @@ permissions:
 
 jobs:
   hello_world_job:
-    runs-on: ubuntu-latest
     name: A job to say hello
+    runs-on: ubuntu-latest
     permissions:
+      # write
       contents: write
       id-token: write
+      issues: write
+      pull-requests: write
     steps:
       # Harden Runner
       - name: Harden Runner # Audit all outbound calls
