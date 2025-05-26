@@ -3,7 +3,8 @@ import git, { type Result } from './git'
 interface Options {
   commit?: string
   delete?: boolean
-  list?: boolean | string
+  force?: boolean
+  list?: boolean
   message?: string
   sign?: boolean
 }
@@ -13,6 +14,7 @@ const getArgs = (
   {
     commit,
     delete: del = false,
+    force = false,
     list = false,
     message = '',
     sign = false
@@ -20,11 +22,14 @@ const getArgs = (
 ): string[] => {
   if (del) return ['-d', name]
 
-  if (list === true) return ['-l']
-
-  if (typeof list === 'string') return ['-l', list]
+  if (list) {
+    if (name === '') return ['-l']
+    return ['-l', name]
+  }
 
   const args: string[] = []
+
+  if (force) args.push('-f')
 
   if (sign) args.push('-s')
 

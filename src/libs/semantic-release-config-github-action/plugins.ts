@@ -24,15 +24,11 @@ const plugins: ReadonlyArray<PluginSpec<any>> = [
   '@semantic-release/release-notes-generator',
   ['@semantic-release/npm', { npmPublish: false }],
   [`${CONTAINER_WORKDIR}/@mnrendra/semantic-release-plugin-github-action`, {
-    commit: {
-      allowEmpty: true,
-      message: 'release: v{nextRelease.version}\n\n{nextRelease.notes}',
-      sign: true
-    },
-    tag: {
-      message: 'release: v{nextRelease.version}\n\n{nextRelease.notes}',
-      sign: true
-    }
+    actionFile: 'action.yml',
+    ignoreFile: '.ghaignore',
+    releaseMessage: 'release: v{nextRelease.version}\n\n{nextRelease.notes}',
+    latestMessage: 'latest: v{nextRelease.version}\n\n{nextRelease.notes}',
+    sign: true
   }],
   '@semantic-release/github'
 ]

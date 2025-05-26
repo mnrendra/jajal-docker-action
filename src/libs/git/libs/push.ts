@@ -2,6 +2,7 @@ import git, { type Result } from './git'
 
 interface Options {
   delete?: boolean
+  force?: boolean
   remote?: string
   signed?: boolean | 'if-asked'
 }
@@ -10,6 +11,7 @@ const getArgs = (
   refs: string,
   {
     delete: del = false,
+    force = false,
     remote = 'origin',
     signed = false
   }: Options = {}
@@ -18,6 +20,10 @@ const getArgs = (
 
   if (del) {
     return [remote, '-d', refs]
+  }
+
+  if (force) {
+    args.push('-f')
   }
 
   if (signed !== false) {

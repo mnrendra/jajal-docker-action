@@ -5,10 +5,13 @@ import { execa } from 'execa'
 export type Result = ExecaResult<Record<any, unknown>>
 
 export type Command =
+| 'add'
 | 'commit'
 | 'config'
 | 'ls-remote'
 | 'push'
+| 'reset'
+| 'rm'
 | 'tag'
 
 const git = async (

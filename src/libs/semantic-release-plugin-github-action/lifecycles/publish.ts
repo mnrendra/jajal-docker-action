@@ -1,47 +1,67 @@
-import type { Options as SROptions, PublishContext } from 'semantic-release'
+import type { PublishContext } from 'semantic-release'
 
-import git from '../../../libs/git'
+import {
+  ACTION_YML,
+  GHA_IGNORE
+} from '../consts'
 
-import { parseMessage, parsePublishContext } from '../utils'
+import {
+  prepareGitIgnore,
+  parsePublishContext,
+  syncGit,
+  parseMessage,
+  restoreGitIgnore,
+  updateActionVersion
+} from '../utils'
 
-interface TagOptions {
-  message?: string
+interface Options {
+  actionFile?: string
+  ignoreFile?: string
+  ignoreContent?: string
+  latestMessage?: string
+  releaseMessage?: string
   sign?: boolean
-}
-
-interface CommitOptions extends TagOptions {
-  allowEmpty?: boolean
-}
-
-interface Options extends SROptions {
-  commit?: CommitOptions
-  tag?: TagOptions
 }
 
 const publish = async (
   {
-    commit = {},
-    tag = {}
+    actionFile = ACTION_YML,
+    ignoreFile = GHA_IGNORE,
+    ignoreContent,
+    latestMessage = 'latest: v{nextRelease.version}\n\n{nextRelease.notes}',
+    releaseMessage = 'release: v{nextRelease.version}\n\n{nextRelease.notes}',
+    sign = false
   }: Options = {},
   context: PublishContext
 ): Promise<void> => {
-  const { branch: branchName, tag: tagName } = parsePublishContext(context)
+  const {
+    branch,
+    tag,
+    version
+  } = parsePublishContext(context)
 
-  const parsedCommitMsg = parseMessage(context, commit.message ?? '')
-  const parsedTagMsg = parseMessage(context, tag.message ?? '')
+  const {
+    ghaIgnores,
+    gitIgnores,
+    backupFile
+  } = prepareGitIgnore(ignoreFile, ignoreContent)
 
-  /* eslint-disable-next-line max-len */
-  await git.commit(parsedCommitMsg, { sign: commit.sign ?? false, allowEmpty: commit.allowEmpty ?? false })
+  updateActionVersion(actionFile, version)
 
-  await git.push(branchName)
+  await syncGit(ghaIgnores, gitIgnores, {
+    branch,
+    message: parseMessage(context, releaseMessage),
+    sign,
+    tag
+  })
 
-  await git.tag(tagName, { delete: true })
+  restoreGitIgnore(backupFile)
 
-  await git.tag(tagName, { sign: tag.sign ?? false, message: parsedTagMsg })
-
-  await git.push(tagName, { delete: true })
-
-  await git.push(tagName)
+  await syncGit(gitIgnores, ghaIgnores, {
+    branch,
+    message: parseMessage(context, latestMessage),
+    sign
+  })
 }
 
 export default publish

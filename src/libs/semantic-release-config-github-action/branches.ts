@@ -1,4 +1,4 @@
-import type { BranchSpec } from 'semantic-release'
+import type { BranchObject, BranchSpec } from 'semantic-release'
 
 const PRERELEASE_BRANCHES = [
   'alpha',
@@ -6,10 +6,10 @@ const PRERELEASE_BRANCHES = [
   'rc'
 ] as const
 
-const prereleaseBranches = PRERELEASE_BRANCHES.map((name) => ({
+const prereleaseBranches = PRERELEASE_BRANCHES.map<BranchObject>((name) => ({
   name,
   prerelease: true
-} as const))
+}))
 
 const branches: readonly BranchSpec[] = [
   '+([0-9])?(.{+([0-9]),x}).x',
