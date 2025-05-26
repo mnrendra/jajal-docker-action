@@ -2,74 +2,46 @@ import type { Options as SROptions, PublishContext } from 'semantic-release'
 
 import git from '../../../libs/git'
 
-// import { parsePublishContext } from '../utils'
+import { parseMessage, parsePublishContext } from '../utils'
 
-const getNested = <O extends Record<string, any>>(
-  object: O,
-  path: string
-): any => {
-  return path.split('.').reduce((acc, key) => acc?.[key as keyof O], object)
+interface TagOptions {
+  message?: string
+  sign?: boolean
+}
+
+interface CommitOptions extends TagOptions {
+  allowEmpty?: boolean
 }
 
 interface Options extends SROptions {
-  allowEmptyCommit?: boolean
-  commitMessage?: string
-  signCommit?: boolean
-  signTag?: boolean
-  tagMessage?: string
+  commit?: CommitOptions
+  tag?: TagOptions
 }
 
 const publish = async (
   {
-    allowEmptyCommit,
-    commitMessage = '',
-    signCommit,
-    signTag,
-    tagMessage = ''
+    commit = {},
+    tag = {}
   }: Options = {},
   context: PublishContext
 ): Promise<void> => {
-  // const { branch, version, tag, notes } = parsePublishContext(context)
+  const { branch: branchName, tag: tagName } = parsePublishContext(context)
 
-  // const message = `release: v${version}`
+  const parsedCommitMsg = parseMessage(context, commit.message ?? '')
+  const parsedTagMsg = parseMessage(context, tag.message ?? '')
 
-  const commitMsgVars = [
-    ...commitMessage.matchAll(/{(.*?)}/g)
-  ].map(m => m[1])
+  /* eslint-disable-next-line max-len */
+  await git.commit(parsedCommitMsg, { sign: commit.sign ?? false, allowEmpty: commit.allowEmpty ?? false })
 
-  let parsedCommitMsg = commitMessage ?? ''
-  commitMsgVars.forEach((key) => {
-    const val = getNested(context, key)
-    parsedCommitMsg = parsedCommitMsg.replace(`{${key}}`, `${val}`)
-  })
+  await git.push(branchName)
 
-  const tagMsgVars = [
-    ...tagMessage.matchAll(/{(.*?)}/g)
-  ].map(m => m[1])
+  await git.tag(tagName, { delete: true })
 
-  let parsedTagMsg = tagMessage ?? ''
-  tagMsgVars.forEach((key) => {
-    const val = getNested(context, key)
-    parsedTagMsg = parsedTagMsg.replace(`{${key}}`, `${val}`)
-  })
+  await git.tag(tagName, { sign: tag.sign ?? false, message: parsedTagMsg })
 
-  await git.commit(parsedCommitMsg, {
-    sign: signCommit,
-    allowEmpty: allowEmptyCommit
-  })
+  await git.push(tagName, { delete: true })
 
-  await git.push(context.branch.name)
-
-  await git.tag(context.nextRelease.gitTag, { delete: true })
-
-  await git.tag(context.nextRelease.gitTag, {
-    sign: signTag,
-    message: parsedTagMsg
-  })
-
-  await git.push(context.nextRelease.gitTag, { delete: true })
-
-  await git.push(context.nextRelease.gitTag)
+  await git.push(tagName)
 }
 
 export default publish
