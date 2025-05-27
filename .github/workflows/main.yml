@@ -32,8 +32,9 @@ jobs:
           fetch-depth: 0
 
       # Hello world action step
-      - name: Hello world action step
-        uses: mnrendra/jajal-docker-action@804160f9643cd70295336034cbdb9e84f6a7458a
-        with:
-          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
+      # - name: Hello world action step
+      #   uses: mnrendra/jajal-docker-action@804160f9643cd70295336034cbdb9e84f6a7458a
+      #   with:
+      #     token: ${{ secrets.TOKEN }}
+      #     gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+      #     gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}

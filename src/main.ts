@@ -12,7 +12,6 @@ import config from './libs/semantic-release-config-github-action'
 import { getInputs } from './utils'
 
 const main = async (): Promise<string> => {
-  console.log('BAJINGAN!')
   await git.setConfig('safe.directory', WORKDIR, 'global')
 
   const inputs = getInputs()
@@ -32,6 +31,8 @@ const main = async (): Promise<string> => {
     email = outputs.email
     currentWorkdir = outputs.workdir
   }
+
+  console.log('----ISO----!!!')
 
   const release = defaultModule(semanticRelease)
 
